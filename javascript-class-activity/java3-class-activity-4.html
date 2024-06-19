@@ -1,0 +1,42 @@
+<!-- Create a dropdown for list of cakes and print the value of second option. -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="dp1">
+
+    </div>
+    <script>
+        let x=document.createElement("select");
+        x.id="s1";
+        document.getElementById("dp1").appendChild(x);
+
+        let y=document.createElement("option");
+        y.innerHTML="chocolate";
+        y.value="choco";
+        y.id="c"
+        document.getElementById("s1").appendChild(y);
+
+        let z=document.createElement("option");
+        z.innerHTML="white";
+        z.value="white";
+        z.id="w";
+        document.getElementById("s1").appendChild(z);
+
+        let a=document.createElement("option");
+        a.innerHTML="plum";
+        a.value="plum"
+        a.id="p"
+        document.getElementById("s1").appendChild(a);
+
+        let b=document.getElementById("w").value;
+        document.write(b);
+
+    </script>
+</body>
+</html>
