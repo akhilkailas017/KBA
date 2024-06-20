@@ -1,0 +1,30 @@
+<!-- Program to swap two numbers using a temporary variable -->
+<!-- Program to swap two numbers w/o using temporary variable -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+    let a,b,c;
+    a=10;
+    b=5;
+    document.write(`before swapping using temp. vaue of a is ${a} and value of b is ${b} <br>`);
+    c=a;
+    a=b;
+    b=c;
+    document.write(`after swapping using temp. vaue of a is ${a} and value of b is ${b}<br><br>`);
+
+
+    document.write(`before swapping using without temp. vaue of a is ${a} and value of b is ${b}<br>`);
+    a=a+b;
+    b=a-b;
+    a=a-b;
+    document.write(`after swapping using without temp. vaue of a is ${a} and value of b is ${b}<br>`);
+</script>
+</body>
+</html>
