@@ -7,11 +7,11 @@
 </head>
 <body>
     <script>
-        let p=100,r=10,t=1,si;
+        let p=100,r=10,t=1,si,ci,n=2;
         si=p*r*t/100;
-        
-        // let ci=p(1+r/100*n)**n*t;
+        ci=p*[1+r/100*n]**n*t;
         document.write(`simple intrest = ${si} `)
+        document.write(`compound intrest = ${ci} `)
 
 
     </script>
