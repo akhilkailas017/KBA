@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        let a=["avesham","bramayugam","premelu","thalavan","maharaj","godzilla","ozler"],b=[];
+        document.write(`most favourite film ${a[1]} <br>`);
+        a.push("manjummelboys");
+        document.write(" ",a,"<br>");
+        a.pop("manjummelboys");
+        document.write(" ",a,"<br>");
+        delete a[2];
+        document.write(" ",a,"<br>");
+        for(i=3;i<7;i++){
+            b[i]=a[i];
+        }
+        document.write(" ",b,"<br>");
+
+        for(i=0;i<a.length;i++){
+            if(a[i]=="avesham"){
+                document.write("<br>avesham movie present<br>")
+            }
+        }
+
+
+    </script>
+</body>
+</html>
+
+<!-- Enter a list of films you like
+From the list print your most favourite film 
+Add one more film to the list
+Pop one element from list
+Delete the least interseted film from list
+Make a different array from 3rd position to 6th position
+Find the position of film acted by your favourite actor
+Search whether “Avesham” is on your list -->
