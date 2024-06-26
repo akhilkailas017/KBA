@@ -7,7 +7,29 @@
 </head>
 <body>
     <script>
-        
+        a=1;
+        b=-3;
+        c=2;
+        discriminant = b**2 - 4*a*c
+        if(discriminant > 0)
+        {
+        root1 = (-b + discriminant**0.5) / (2 * a)
+        root2 = (-b - discriminant**0.5) / (2 * a)
+        document.write("The roots are :",root1+"and"+root2);
+        }
+        else if(discriminant == 0)
+        {
+        root = -b / (2 * a)
+        document.write("The root is :",root);
+        }
+        else
+        {
+        real_part = -b / (2 * a)
+        imaginary_part = 0.5**(-discriminant) / (2 * a)
+        root1 = complex(real_part, imaginary_part)
+        root2 = complex(real_part, -imaginary_part)
+        document.write("The roots are :",root1,root2);
+        }
     </script>
 </body>
 </html>
