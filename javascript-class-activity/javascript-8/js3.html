@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        let person={
+            name:"akhil",
+            age:23
+        }
+
+        //  Use call to invoke introduce with an object having a name property.
+        function introduce(){
+            console.log("Hello,my name is "+this.name);
+        };
+        introduce.call(person);
+
+
+
+        // Use apply to invoke introduce with another object. 
+        function introduce1(greet,exc){
+            console.log(greet + " my name is " + this.name + exc);
+            
+        }
+        introduce1.apply(person, ["Hi","!"]);
+
+
+        // Use bind to create a new function with a different object and call it.
+
+        let person2={
+            name:"arun",
+            age:20
+        }
+
+        function introduce3(){
+            console.log("Hi... my name is "+this.name);
+        };
+
+        let greetme = introduce3.bind(person2);
+        greetme();
+
+
+    </script>
+</body>
+</html>
+
+<!-- 
+Define a function named introduce that takes no parameters but uses this to log Hello, my name is [name].
+-->
