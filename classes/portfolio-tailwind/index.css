@@ -1,0 +1,181 @@
+
+.home-middle {
+    display: flex;
+    text-align: justify;
+    height: 330px;
+    width: 650px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 15px;
+    margin-bottom: 0px;
+    font-size: 20px;
+    padding: 10px;
+    gap: 15px;
+}
+
+.education-split {
+    display: flex;
+    text-align: center;
+    font-size: 20px;
+
+}
+
+.edu-left {
+    height: 300px;
+    width: 26.6%;
+    /* background-color: red; */
+}
+
+.edu-middle {
+    height: 300px;
+    width: 26.6%;
+    /* background-color: blue; */
+}
+
+.edu-right {
+    /* background-color: green; */
+    height: 300px;
+    width: 26.6%;
+}
+
+.edu-p {
+    margin-bottom: 20px;
+}
+
+.education {
+    height: 450px;
+    /* background-color: #ffffff; */
+    background-color:#005C78;
+    color: #F3F7EC;
+    border-bottom: 1px solid black;
+}
+
+.skills {
+    /* background-color: #f9f9f9; */
+    background-color: #E88D67;
+    border-bottom: 1px solid black;
+}
+
+.skill-list {
+    display: flex;
+    justify-content: space-between;
+    margin-left: 30px;
+    margin-right: 30px;
+    padding-top: 100px;
+    padding-bottom: 100px;
+    padding-left: 0px;
+    padding-right: 0px;
+}
+
+.skill-img {
+    height: 100px;
+    width: 100px;
+}
+
+.skill-label {
+    font-weight: bold;
+    font-size: 20px;
+}
+
+.skill-html {
+    padding-left: 25px;
+}
+
+.skill-css {
+    padding-left: 25px;
+}
+
+.project-1 {
+    display: flex;
+    padding-top: 115px;
+}
+
+.project-left {
+    width: 50%;
+    height: 350px;
+    padding-left: 25px;
+    padding-right: 25px;
+}
+
+.project-right {
+    width: 50%;
+    height: 350px;
+    padding-left: 25px;
+    padding-right: 25px;
+}
+
+.project-heading {
+    font-size: 22px;
+    text-align: center;
+    padding-bottom: 60px;
+    font-weight: bold;
+}
+
+.project-details {
+    font-size: 20px;
+    text-align: justify;
+}
+
+.project-link {
+    padding-left: 0px;
+    height: 40px;
+    width: 110px;
+    border: 2px solid #ccc;
+    background-color: #f8f8f8;
+    font-size: 16px;
+}
+
+.project-btn {
+    padding-top: 35px;
+    padding-left: 200px;
+
+
+}
+
+.project {
+    background-color: #005C78;
+    color: #F3F7EC;
+    border-bottom: 1px solid black;
+}
+
+table {
+    font-size: 22px;
+    padding-top: 70px;
+    margin-left: auto;
+    margin-right: auto;
+    border-spacing: 10px 15px;
+}
+
+.contact {
+    /* background-color: #f9f9f9; */
+    background-color: #E88D67;
+    border-bottom: 1px solid black;
+}
+
+.contact-input {
+    width: 400px;
+    height: 45px;
+    padding: 12px 20px;
+    font-size: 16px;
+    border: 2px solid #ccc;
+    background-color: #f8f8f8;
+}
+
+.contact-msg {
+    width: 400px;
+    height: 150px;
+    padding: 12px 20px;
+    border: 2px solid #ccc;
+    border-radius: 4px;
+    background-color: #f8f8f8;
+    font-size: 16px;
+    resize: none;
+}
+
+.contact-btns {
+    height: 40px;
+    width: 110px;
+    border: 2px solid #ccc;
+    background-color: #f8f8f8;
+    font-size: 16px;
+}
