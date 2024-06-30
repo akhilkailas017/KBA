@@ -76,7 +76,7 @@ function addMovie() {
             
             if(!isNaN(newpriority) && newpriority>=1 && newpriority<=3 && newpriority!=""){
                 priority=Number(newpriority);
-
+                li.classList.remove("priority-high","priority-medium","priority-low")
                 switch (priority) {
                     case 1:
                         li.classList.add('priority-high');
