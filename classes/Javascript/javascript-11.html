@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        let operation="+",a=5,b=3,c;
+        switch(operation){
+            case "+":{
+                c=a+b;
+                document.write(`sum is ${c}`);
+                break;
+            }
+            case "-":{
+                c=a-b;
+                document.write(`difference is ${c}`);
+                break;
+            }
+            case "*":{
+                c=a*b;
+                document.write(`product is ${c}`);
+                break;
+            }
+            case "/":{
+                c=a/b;
+                document.write(`quotient is ${c}`);
+                break;
+            }
+            case "%":{
+                c=a%b;
+                document.write(`remainder is ${c}`);
+                break;
+            }
+            default : {
+                document.write("error");
+                
+            }
+        }
+    </script>
+</body>
+</html>

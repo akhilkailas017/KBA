@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <p> my sentence is <span id="my-sen"></span> </p> 
+    <p>length of my sentence <span id="length"></span></p>
+    <p> the human character is <span id="character"></span></p>
+    <p>the name of book <span id="book"></span></p>
+    <p>my sentence in upper case <span id="upper"></span></p>
+    
+    <script>
+        let x="mowgli is the human character in jungle book";
+        document.write("the length is ",x.length);
+        document.write("<br>character at index 2 is ", x.charAt(2));
+        document.write("<br>",x.toUpperCase());
+        document.write("<br>",x.toLowerCase());
+        document.write("<br> substring is ",x.substring(0,6));
+        document.write("<br> substring is ",x.substring(6));
+        document.write("<br> substr is ",x.substr(7,2));
+
+        document.getElementById("my-sen").innerHTML=x;
+        document.getElementById("length").innerHTML=x.length;
+        document.getElementById("character").innerHTML=x.substring(0,6);
+        document.getElementById("book").innerHTML=x.substring(32);
+        // document.getElementById("upper").innerHTML=x.toUpperCase();
+        document.getElementById("upper").textContent=x.toUpperCase();
+    </script>
+</body>
+</html>

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        let a = [[]];
+
+        for (i = 0; i < 3; i++) {
+            for (j = 0; j < 3; j++) {
+                a[i] = [j];
+            }
+        }
+
+        for (i = 0; i < 3; i++) {
+            for (j = 0; j < 3; j++) {
+                a[i][j] = i + 1;
+            }
+        }
+
+        for (i = 0; i < 3; i++) {
+            for (j = 0; j < 3; j++) {
+                document.write(a[i][j]);
+            }
+            document.write("<br>");
+        }
+
+        
+
+    </script>
+</body>
+
+</html>

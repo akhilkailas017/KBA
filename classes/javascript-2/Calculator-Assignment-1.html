@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>Calculator</title>
+</head>
+
+<body>
+	<br><br>
+	<center>
+		<table border="0.5px" cellspacing="10px" cellpadding="0" style="background-color:#4f4e53; border-radius: 10px;">
+			<tr>
+				<td colspan="4" align="right" style="background-color:#d0e6a8; height:60px; border-radius: 5px;">
+					<font size="9px"><span id="display">0.</span></font>
+				</td>
+			</tr>
+			<tr>
+				<td><input type="button" value="7" onclick="btn1()" id="btn"
+						style="width:50px; height:50px; color:white; background-color:#828282; font-size : 30px;"></td>
+				<td><input type="button" value="8" onclick="btn1()" id="btn"
+						style="width:50px; height:50px; color:white; background-color:#828282; font-size : 30px;"></td>
+				<td><input type="button" value="9" onclick="btn1()" id="btn"
+						style="width:50px; height:50px; color:white; background-color:#828282; font-size : 30px;"></td>
+				<td><input type="button" value="&divide;" onclick=""
+						style="width:50px; height:50px; color:white; background-color:#5fc8cc; font-size : 30px;"></td>
+			</tr>
+			<tr>
+				<td><input type="button" value="4" onclick=""
+						style="width:50px; height:50px; color:white; background-color:#828282; font-size : 30px;"></td>
+				<td><input type="button" value="5" onclick=""
+						style="width:50px; height:50px; color:white; background-color:#828282; font-size : 30px;"></td>
+				<td><input type="button" value="6" onclick=""
+						style="width:50px; height:50px; color:white; background-color:#828282; font-size : 30px;"></td>
+				<td><input type="button" value="x" onclick=""
+						style="width:50px; height:50px; color:white; background-color:#5fc8cc; font-size : 30px;"></td>
+			</tr>
+			<tr>
+				<td><input type="button" value="1"
+						style="width:50px; height:50px; color:white; background-color:#828282; font-size : 30px;"></td>
+				<td><input type="button" value="2"
+						style="width:50px; height:50px; color:white; background-color:#828282; font-size : 30px;"></td>
+				<td><input type="button" value="3"
+						style="width:50px; height:50px; color:white; background-color:#828282; font-size : 30px;"></td>
+				<td><input type="button" value="-"
+						style="width:50px; height:50px; color:white; background-color:#5fc8cc; font-size : 30px;"></td>
+			</tr>
+			<tr>
+				<td><input type="button" value="0"
+						style="width:50px; height:50px; color:white; background-color:#828282; font-size : 30px;"></td>
+				<td><input type="button" value="&#183;"
+						style="width:50px; height:50px; color:white; background-color:#828282; font-size : 30px;"></td>
+				<td><input type="button" value="="
+						style="width:50px; height:50px; color:white; background-color:#f55a58; font-size : 30px;"></td>
+				<td><input type="button" value="+"
+						style="width:50px; height:50px; color:white; background-color:#5fc8cc; font-size : 30px;"></td>
+			</tr>
+
+		</table>
+
+	</center>
+
+	<script>
+		// function displayMessage(){
+		//     const age = document.getElementById('ageInput').value;
+		//     const messageElement = document.getElementById('message');
+		//     if(age){
+		//         messageElement.textContent = `You are ${age} years old.`;
+		//     } else{
+		//         messageElement.textContent = 'Please enter your age.'
+		//     }
+		// }
+
+		function btn1() {
+			let x = parseFloat(document.getElementById("btn").value);
+
+			switch (x) {
+				// case 7:
+				// 	document.getElementById("display").innerHTML = x;
+				// 	break;
+					case 9:
+					document.getElementById("display").innerHTML = x;
+					break;
+				
+				
+				
+				default: document.getElementById("display").innerHTML = "invalid";
+				break;
+
+
+			}
+		}
+
+
+
+	</script>
+</body>
+
+</html>

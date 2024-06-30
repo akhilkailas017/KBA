@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>javascript object new examples</h1>
+    <p id="originalperson"></p>
+    <p id="modifiedperson"></p>
+    <script>
+        const person={
+            firstname:"john",
+            lastname:"mathew",
+            age:30,
+            eyecolor:"blue"
+        }
+
+        document.getElementById("originalperson").innerHTML=`original person object:${JSON.stringify(person)}`;
+        const x=person;
+        x.age=10;
+        document.getElementById("modifiedperson").innerHTML=`modified person object:${JSON.stringify(person)}`;
+    </script>
+</body>
+</html>

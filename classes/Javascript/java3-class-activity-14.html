@@ -1,0 +1,47 @@
+<!-- Program to find square of a number -->
+<!-- Program to find cube of a number -->
+<!-- Program to find area of square, circle, rectangle, triangle -->
+<!-- Program to find perimeter of rectangle, square, circle, triangle -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        let a=4,b,c;
+        b=a*a;
+        c=a*a*a;
+        document.write(`square is ${b}<br>`);
+        document.write(`cube is ${c} <br><br>`);
+
+
+        let length1=10, areasq,perisq;
+        perisq=4*length1;
+        areasq=length1*length1;
+        document.write(`area of square is ${areasq} and perimeter is ${perisq}<br>`);
+
+
+        let rad=10,areacir,pericir;
+        areacir=3.14*rad*rad;
+        pericir=2*3.14*rad;
+        document.write(`area of circle is ${areacir} and perimeter is ${pericir}<br>`);
+
+
+        let length2=5,breadth=6,arearect,perirect;
+        arearect=length2*breadth;
+        perirect=2*(length2+breadth);
+        document.write(`area of rectangle is ${arearect} and perimeter is ${perirect}<br>`);
+
+
+        let base=10 ,height=20,areatri,peritri,e=5,f=6,g=10;
+        areatri=0.5*base*height;
+        peritri=e+f+g;
+        document.write(`area of triangle is ${areatri} and perimeter is ${peritri}<br>`);
+
+    </script>
+</body>
+</html>

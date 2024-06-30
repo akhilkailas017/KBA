@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        let a=1234,rem = 0, rev = 0,i=0;
+        y = a.toString().length;
+        while(i<y){
+            rem = a % 10;
+            rev = rev * 10 + rem;
+            a = Math.floor(a / 10);
+            i++;
+        }
+        document.write(rev)
+    </script>
+</body>
+</html>
+

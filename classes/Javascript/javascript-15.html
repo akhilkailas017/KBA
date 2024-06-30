@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        let a=[];
+        // a[0]=1;
+        // a[1]=2;
+        // a[2]=3;
+        // a[3]=4;
+        // a[4]=5;
+
+        for(i=0;i<5;i++){
+            a[i]=i+1;
+        }
+        document.write(a);
+
+        document.write("<br>");
+
+        let b=[];
+
+        for(i=1;i<10;i++){
+            b[i-1]=i*2;
+        }
+        document.write(b);
+        
+        document.write("<br> length of array is ",b.length,"<br>");
+
+        let sum=0;
+        // for(i=1;i<10;i++){
+        //     b[i-1]=i*2;
+        //     sum=sum+b[i-1];
+        // }
+
+        // for (x in b){
+        //     sum=sum+b[x];
+        // }
+        // document.write("sum = ",sum);
+
+        // for (x in b){
+        //     b[x]=b[x]+2;
+        // }
+        // document.write(b,"<br>");
+
+        
+
+        for(i=0;i<10;i++){
+            if(i==3){
+                b[3]=25;
+                break;
+            }
+        }
+        document.write(b);
+
+        b.push(20);
+        document.write("<br>",b,"<br>");
+
+        for(i=9;i>=0;i--){
+            document.write(b[i]," ")
+        }
+
+
+        document.write("<br>");
+
+        let c=[];
+        for(i=0;i<5;i++){
+            c[i]=i+1;
+        }
+        
+
+        for(x of c){
+            document.write(x);
+        }
+
+        document.write("<br>");
+
+        for(x in c){
+            document.write(x);
+        }
+
+        
+    </script>
+</body>
+</html>

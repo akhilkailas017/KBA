@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        let a = [[1, 2, 3], [1, 2, 3], [1, 2, 3]], b = [[1, 1, 1], [2, 2, 2], [3, 3, 3]], c = [[],[],[]];
+
+
+        if (a.length == b.length && a[0].length == b[0].length) {
+            for (i = 0; i < a.length; i++) {
+                for (j = 0; j < a.length; j++) {
+                    c[i][j] = a[i][j] + b[i][j];
+                }
+            }
+
+            for (i = 0; i < a.length; i++) {
+                for (j = 0; j < a.length; j++) {
+                    document.write(c[i][j])
+                }document.write("<br>");
+            }
+
+        }
+        else{
+            document.write("row and coloumn not equal")
+        }
+    </script>
+
+</body>
+
+</html>

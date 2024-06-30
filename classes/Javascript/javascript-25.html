@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        let a = [[1, 2, 3], [4, 5, 6], [7, 8, 9]],b=[[],[],[]];
+
+        document.write("<br>Array<br>");
+
+        for (i = 0; i < a.length; i++) {
+                for (j = 0; j < a.length; j++) {
+                    document.write(a[i][j])
+                }document.write("<br>");
+            }
+
+
+        for(i=0;i<a.length;i++){
+            for(j=0;j<a[0].length;j++){
+                b[i][j]=a[j][i];
+            }
+        }
+
+        document.write("<br>Transverse<br>");
+        for (i = 0; i < a.length; i++) {
+                for (j = 0; j < a.length; j++) {
+                    document.write(b[i][j])
+                }document.write("<br>");
+            }
+    </script>
+</body>
+</html>

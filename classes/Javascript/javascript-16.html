@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        let x = "javascript";
+        for (i = 0; i < x.length; i++) {
+            document.write(x[i], " ");
+        }
+        document.write("<br>");
+
+        // for (i = 0; i < x.length; i++) {
+        //     if (x[i] == "c") {
+        //         x[i] = "z";
+        //     }
+        // }
+        // document.write(x);
+
+        let a=[];
+        for (i = 0; i < x.length; i++) {
+
+            if (x[i] == "c") {
+                a[i] = "z";
+            }
+            a[i]=x[i];
+        }
+        document.write(a);
+
+    </script>
+</body>
+
+</html>

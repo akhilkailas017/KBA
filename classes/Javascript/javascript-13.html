@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        document.write("hello world <br>");
+        document.write("hello world <br>");
+        document.write("hello world <br>");
+        document.write("hello world <br>");
+        document.write("hello world <br>");
+
+        document.write("<br>");
+
+        let i, j = 20;
+        // for (i = 0; i < 5; i++) {
+        //     document.write("hello <br>");
+        // }
+        // for(i=0;i<j;i++){
+        //     document.write("hello<br>");
+        // }
+
+        // for(i=0;i<j;i+=2){
+        //     document.write("hello<br>");
+        // }
+        i = 0;
+        for (; i < j; i += 2) {
+            document.write("hello<br>");
+        }
+
+        let k;
+        for (k = 1; k <= 10; k++) {
+
+            document.write("<br>", k);
+        }
+
+        document.write("<br>");
+
+        let l;
+        for (l = 1; l <= 10; l++) {
+            if (l % 2 == 0) {
+                document.write("<br>", l);
+            }
+        }
+
+        document.write("<br>");
+
+        for (l = 1; l <= 10; l++) {
+            if (l % 2 !== 0) {
+                document.write("<br>", l);
+            }
+        }
+
+        document.write("<br>");
+        document.write("<br>");
+
+        let sum = 0;
+        for (l = 1; l <= 10; l++) {
+            sum = sum + l;
+
+        }
+        document.write(`sum is ${sum}`);
+
+        document.write("<br>");
+        document.write("<br>");
+
+        let sumeven = 0;
+        for (l = 1; l <= 10; l++) {
+            if (l % 2 == 0) {
+                sumeven = sumeven + l;
+            }
+        }
+        document.write(`sum of even numbers is ${sumeven}`);
+
+        document.write("<br>");
+        document.write("<br>");
+
+        let num = 5, fact = 1;
+        for (l = 1; l <= num; l++) {
+            fact = fact * l;
+        }
+        document.write(`factorial is ${fact}`);
+
+        document.write("<br>");
+        document.write("<br>");
+
+        let fact1 = 1,num2=5;
+        for (; num2 >= 1; num2--) {
+            fact1 = fact1 * num2;
+        }
+        document.write(`factorial is ${fact1}`);
+
+    </script>
+</body>
+
+</html>

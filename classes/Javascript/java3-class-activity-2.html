@@ -1,0 +1,36 @@
+<!-- Make an unordered list of cinemas on html page using javascript. -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="list">
+
+    </div>
+    <script>
+        let x=document.createElement("ul");
+        x.id="list1";
+        document.getElementById("list").appendChild(x);
+        let y=document.createElement("li");
+        y.innerHTML="list 1";
+        document.getElementById("list1").appendChild(y);
+        let z=document.createElement("li");
+        z.innerHTML="list 2";
+        document.getElementById("list1").appendChild(z);
+        let a=document.createElement("li");
+        a.innerHTML="list 3";
+        document.getElementById("list1").appendChild(a);
+        let b=document.createElement("li");
+        b.innerHTML="list 4";
+        document.getElementById("list1").appendChild(b);
+        let c=document.createElement("li");
+        c.innerHTML="list 5";
+        document.getElementById("list1").appendChild(c);
+
+    </script>
+</body>
+</html>
