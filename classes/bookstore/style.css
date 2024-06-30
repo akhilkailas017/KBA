@@ -1,0 +1,289 @@
+* {
+    margin: 0;
+    box-sizing: border-box;
+
+}
+
+
+.navbar {
+    position: sticky;
+    top: 0;
+    background-color: #1c77d5;
+    height: 45px;
+    padding-top: 15px;
+    padding-left: 45px;
+    padding-right: 45px;
+
+}
+
+
+.navbar-1{
+    justify-content: space-between;
+    list-style-type: none;
+    display: flex;
+}
+.navbar-2{
+    list-style-type: none;
+    display: flex;
+    gap: 10px;
+    visibility: hidden;
+}
+
+.nav-2-1-img{
+    width: 45px;
+    height: 45px;
+}
+
+a {
+    text-decoration: none;
+
+}
+
+.nav-link {
+    color: white;
+    font-size: 19px;
+}
+
+.nav-link:hover {
+    color: red;
+}
+
+.nav-left{
+    display: flex;
+    gap: 15px;
+}
+
+
+
+.list-of-books-ul {
+    list-style-type: square;
+
+    list-style-position: inside;
+    
+}
+
+.list-of-books-li {
+    font-weight: bold;
+    font-size: 18px;
+}
+
+
+
+.bc{
+    width: 100%; 
+    height: 150px;
+
+}
+
+
+
+
+
+.imgbook {
+    float: right;
+    width: 110px;
+    height: 150px;
+    opacity: 0.5;
+    margin-left: 20px;
+}
+
+.imgbook:hover {
+    opacity: 1.0;
+}
+
+.text1 {
+    border-style: solid;
+    border-color: #ff0044;
+    border-width: 10px;
+    outline-style: solid;
+    outline-color: black;
+    background-color: #F18DA8;
+    width: 500px;
+    height: 100px;
+    padding-left: 20px;
+    padding-top: 30px;
+    padding-right: 30px;
+    padding-bottom: 5px;
+    margin-top: 50px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 50px;
+    overflow: scroll;
+}
+
+table {
+    border-style: solid;
+    border-width: 2px;
+    border-color: #ff0044;
+    margin-left: auto;
+    margin-right: auto;
+    width: 100px;
+    height: auto;
+
+}
+
+
+
+td,th {
+    border-style: solid;
+    border-color: #ff0044;
+    text-align: center;
+
+}
+
+.slink {
+    text-decoration: none;
+    font-size: 18px;
+}
+
+.slink:visited {
+    color: blue;
+}
+
+.slink:hover {
+    color: red;
+
+}
+
+.slink:active {
+    color: green;
+}
+
+.shoplink {
+    display: flex;
+
+}
+
+.az {
+    margin-left: auto;
+}
+
+
+
+
+
+
+.lhead {
+    text-align: center;
+    font-size: 25px;
+    margin-top: 10px;
+    margin-bottom: 15px;
+}
+
+.row {
+    display: flex;
+    /* border-right: 1px solid red; */
+
+}
+
+/* .coloumn-1{
+    width: 33.33%;
+    padding-right: 10px;
+    padding-left: 10px;
+    border-right: 3px solid black;   
+} */
+
+.coloumn-1 {
+    width: 25%;
+    padding-right: 10px;
+    padding-left: 10px;
+    border-right: 3px solid black;
+}
+
+.coloumn-2 {
+    width: 50%;
+    padding-right: 10px;
+    padding-left: 10px;
+    border-right: 3px solid black;
+}
+
+.coloumn-3 {
+    width: 25%;
+    padding-right: 10px;
+    padding-left: 10px;
+}
+
+img {
+    width: 110px;
+    float: left;
+    padding-right: 10px;
+}
+
+.wa-icon{
+    position: sticky;
+    top: 150px;
+    left: 98%;
+    width: 50px;
+    
+    height: auto;
+}
+/* .row:after{        
+    content:"";
+    display: table;
+    clear: both;
+}
+for unaffecting underlaying content */
+
+/* @media screen and (max-width:900px)and (min-width:500px),(max-width:1100px){
+    .text1{
+        background-color:lightseagreen;
+    }
+} */
+
+@media screen and (max-width:768px){
+    .row{
+        display: block;
+    }
+    .coloumn-1{
+        width: 100%;
+        border: none;
+        margin-bottom: 25px;
+        margin-top: 10px;
+
+    }
+    .coloumn-2{
+        width: 100%;
+        border: none;
+        margin-bottom: 25px;
+        
+    }
+    .coloumn-3{
+        width: 100%;
+        margin-bottom: 10px;
+        
+    }
+    .bc{
+        margin-bottom: 25px;
+    }
+    .text1{
+        width: 50%;
+    }
+    table{
+        width: auto;
+        height: auto;
+    }
+
+    .navbar-2{
+        visibility: visible;
+        
+    }
+    .navbar-1{
+        visibility: hidden;
+    }
+
+    .navbar {
+        height: 75px;
+        padding-top: 0px;
+        padding-left: 30px;
+    }
+
+    .nav-2-2{
+        background-color:cadetblue;
+        padding: 10px;
+        visibility: hidden; 
+    }
+    .nav-2-1:hover+.nav-2-2{
+        visibility: visible;
+    }
+
+}
