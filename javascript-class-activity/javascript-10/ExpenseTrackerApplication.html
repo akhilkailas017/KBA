@@ -4,7 +4,6 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Expense Tracker Application</title>
-    <link rel="stylesheet" href="ExpenseTrackerApplication.css" />
     <style>
       .food {
         color: green;
@@ -15,6 +14,19 @@
       .entertainment {
         color: purple;
       }
+      .completed {
+        color: grey;
+        text-decoration: line-through;
+      }
+      ul {
+        list-style-type: none;
+      }
+      li {
+        margin: 5px;
+      }
+      button{
+        margin-left: 5px;
+      }
     </style>
   </head>
   <body>
@@ -24,9 +36,11 @@
     <input type="text" name="" id="description" /><br /><br />
     <label for="amount">Enter Expense Amount :</label>
     <input type="text" name="" id="amount" /><br /><br />
-    <label for="category">Enter Expense Category :</label>
+    <label for="category"
+      >Enter Expense Category (1-Food , 2-Transport , 3-Entertainment):</label
+    >
     <input type="text" name="" id="category" /><br /><br />
-    <button>Add Expense</button>
+    <button onclick="addexpense()">Add Expense</button>
     <ul id="expenselist"></ul>
 
     <script src="ExpenseTrackerApplication.js"></script>
