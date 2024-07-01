@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <label for="">First Number</label>
+    <input type="text" name="" id="fno" /><br /><br />
+    <label for="">Second Number</label>
+    <input type="text" name="" id="sno" /><br /><br />
+    <button onclick="comp()">Compare</button>
+    <p id="output"></p>
+    <script>
+      function comp() {
+        var fno = document.getElementById("fno").value;
+        var sno = document.getElementById("sno").value;
+        if (fno > sno) {
+          document.getElementById("output").innerHTML =
+            `${fno} is Greater`;
+        } else if (fno < sno) {
+          document.getElementById("output").innerHTML =
+            `${sno} is Greater`;
+        } else {
+          document.getElementById("output").innerHTML =
+            "Both Numbers are Equal";
+        }
+      }
+    </script>
+  </body>
+</html>
