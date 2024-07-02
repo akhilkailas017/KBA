@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <label for="sidesquare">Enter side of Square: </label>
+    <input type="text" id="sidesquare" name="sidesquare" ><br><br>
+    <button type="button" onclick="areasquare()">Area of square</button>
+    <p id="output1"></p>
+    <br><br>
+
+
+    <label for="lengthrec">Enter the length: </label>
+    <input type="text" id="lengthrec"><br><br>
+    <label for="breadthrec">Enter the breadth: </label>
+    <input type="text" id="breadthrec"><br><br>
+    <button type="button" onclick="arearec()">Area of rectangle</button>
+    <p id="output2"></p>
+    <br><br>
+
+
+    <label for="radiuscir">Enter radius: </label>
+    <input type="text" id="radiuscir"><br><br>
+    <button type="button" onclick="areacir()">Area of Circle</button>
+    <p id="output3"></p>
+
+    <script>
+        function areasquare(){
+            const side = document.getElementById("sidesquare").value;
+            const areasquare = side * side;
+            document.getElementById("output1").innerHTML = `Area of square is: ${areasquare}`;
+        }
+
+        function arearec(){
+            const length = document.getElementById("lengthrec").value;
+            const breadth = document.getElementById("breadthrec").value;
+            const arear = length * breadth;
+            document.getElementById("output2").innerHTML = `Area of rectangle is: ${arear}`;
+        }
+
+        function areacir(){
+            const radius = document.getElementById("radiuscir").value;
+            const areacircle = 3.14 * radius * radius;
+            document.getElementById("output3").innerHTML = `Area of circle is: ${areacircle}`;
+            }
+            
+        
+    </script>
+</body>
+</html>
