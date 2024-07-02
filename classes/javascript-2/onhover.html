@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="hoverbox" style="width:200px; height: 200px; background-color: blue;">Hover over Me</div>
+    <div id="hoveroutput"></div>
+    <script>
+        const hovermap= new Map();
+        document.getElementById("hoverbox").onmouseover=function(){
+            hovermap.set("hover","mouse is over the box");
+            document.getElementById("hoveroutput").innerText=hovermap.get("hover");
+        }
+
+    </script>
+</body>
+</html>

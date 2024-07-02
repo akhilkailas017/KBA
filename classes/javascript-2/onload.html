@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+    <div id="loadoutput"></div>
+    <script>
+        const loadmap= new Map();
+        window.onload=function (){
+            loadmap.set("load","page has loaded");
+            document.getElementById("loadoutput").innerText=loadmap.get("load");
+        }
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <button id="addbutton">Add Item</button>
+    <div id="output"></div>
+    <script>
+        const map=new Map();
+        document.getElementById("addbutton").onclick=function(){
+            const key=prompt("enter Key");
+            const value=prompt("enter Value");
+            map.set(key,value);
+            document.getElementById("output").innerHTML=JSON.stringify([...map]);
+        }
+    </script>
+</body>
+</html>
