@@ -13,40 +13,51 @@
     <button onclick="addarray()">Add Elements</button>
     <br><br>
     <label>Entered array is <span id="output"></span></label><br><br>
-    <label>index <select id="ind" onclick="selectindex()"></select> th element is: <span id="out"></span></label>
+    <label>index <select id="ind" onchange="selectindex()"></select> th element is: <span id="out"></span></label>
     <br><br>
     <label>The Array is sorted order is :<span id="sortout"></span></label>
+    <br><br>
+    <label>The reversed array is :<span id="revout"></span></label>
 
     <script>
         let arr = [], i = 1;
         function addarray() {
-            let element = document.getElementById("elements").value.trim();
+            let element = Number(document.getElementById("elements").value.trim());
             if (element !== "") {
                 arr.push(element);
-            }
-            else {
+            } else {
                 alert("empty");
             }
             document.getElementById("elements").value = "";
             document.getElementById("output").innerHTML = arr;
+
+            let arr2 = [...arr];
+            let temp, c, j;
+
+            for (c = arr2.length - 1; c >= 0; c--) {
+                for (j = 0; j <= c - 1; j++) {
+                    if (arr2[j] > arr2[j + 1]) {
+                        temp = arr2[j + 1];
+                        arr2[j + 1] = arr2[j];
+                        arr2[j] = temp;
+                    }
+                }
+            }
+            document.getElementById("sortout").innerHTML = arr2;
+
+           
+
 
             let select = document.getElementById("ind");
             let option = document.createElement("option");
             option.textContent = i - 1;
             select.appendChild(option);
             i++;
-
         }
         function selectindex() {
             let selectedIndex = document.getElementById("ind").selectedIndex;
             document.getElementById("out").innerHTML = arr[selectedIndex];
         }
-        
-
-       
-
-
-        document.getElementById("sortout").innerHTML=a;
     </script>
 </body>
 
