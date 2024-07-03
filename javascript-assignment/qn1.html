@@ -32,28 +32,28 @@
 				<td><input type="button" value="7" class="btn" onclick="appendToDisplay('7')"></td>
 				<td><input type="button" value="8" class="btn" onclick="appendToDisplay('8')"></td>
 				<td><input type="button" value="9" class="btn" onclick="appendToDisplay('9')"></td>
-				<td><input type="button" value="&divide;" class="btn" onclick="appendToDisplay('/')"></td>
+				<td><input type="button" value="/" class="btn" onclick="appendToDisplay('/')" style="background-color:#5fc8cc;"></td>
 			</tr>
 			<tr>
 				<td><input type="button" value="4" class="btn" onclick="appendToDisplay('4')"></td>
 				<td><input type="button" value="5" class="btn" onclick="appendToDisplay('5')"></td>
 				<td><input type="button" value="6" class="btn" onclick="appendToDisplay('6')"></td>
-				<td><input type="button" value="x" class="btn" onclick="appendToDisplay('*')"></td>
+				<td><input type="button" value="*" class="btn" onclick="appendToDisplay('*')" style="background-color:#5fc8cc;"></td>
 			</tr>
 			<tr>
 				<td><input type="button" value="1" class="btn" onclick="appendToDisplay('1')"></td>
 				<td><input type="button" value="2" class="btn" onclick="appendToDisplay('2')"></td>
 				<td><input type="button" value="3" class="btn" onclick="appendToDisplay('3')"></td>
-				<td><input type="button" value="-" class="btn" onclick="appendToDisplay('-')"></td>
+				<td><input type="button" value="-" class="btn" onclick="appendToDisplay('-')" style="background-color:#5fc8cc;"></td>
 			</tr>
 			<tr>
 				<td><input type="button" value="0" class="btn" onclick="appendToDisplay('0')"></td>
-				<td><input type="button" onclick="appendToDisplay('.')" value="&#183;" class="btn"></td>
-				<td><input type="button" value="=" class="btn" onclick="calculateResult()"></td>
-				<td><input type="button" value="+" class="btn" onclick="appendToDisplay('+')"></td>
+				<td><input type="button" onclick="appendToDisplay('.')" value="." class="btn"></td>
+				<td><input type="button" value="=" class="btn" onclick="calculateResult()" style="background-color:#f55a58;"></td>
+				<td><input type="button" value="+" class="btn" onclick="appendToDisplay('+')" style="background-color:#5fc8cc;"></td>
 			</tr>
 			<tr>
-				<td colspan="4"><input type="button" value="Clear" class="btn" onclick="clearDisplay()" style="width: 230px;"></td>
+				<td colspan="4"><input type="button" value="Clear" class="btn" onclick="clearDisplay()" style="width: 230px; background-color:#f55a58;"></td>
 			</tr>
 		</table>
 
@@ -61,7 +61,6 @@
 
 	<script>
 		let currentDisplay = "0";
-
 		function appendToDisplay(value) {
 			if (currentDisplay === "0") {
 				currentDisplay = value;
@@ -70,12 +69,10 @@
 			}
 			updateDisplay();
 		}
-
 		function updateDisplay() {
 			const displayElement = document.getElementById("display");
 			displayElement.textContent = currentDisplay;
 		}
-
 		function calculateResult() {
 			try {
 				const result = eval(currentDisplay);
@@ -86,7 +83,6 @@
 				updateDisplay();
 			}
 		}
-
 		function clearDisplay() {
 			currentDisplay = "0";
 			updateDisplay();
