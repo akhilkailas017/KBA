@@ -17,6 +17,9 @@
     <br><br>
     <label>The Array is sorted order is :<span id="sortout"></span></label>
     <br><br>
+    <label>search : <input type="text" id="search"> <button onclick="searcharr()">Enter</button> <span
+            id="searchout"></span></label>
+    <br><br>
     <label>The reversed array is :<span id="revout"></span></label>
 
     <script>
@@ -45,7 +48,14 @@
             }
             document.getElementById("sortout").innerHTML = arr2;
 
-           
+            let arr3 = [...arr];
+            let arr4 = [];
+            let d;
+
+            for (let d = arr3.length - 1; d >= 0; d--) {
+                arr4.push(arr3[d]);
+            }
+            document.getElementById("revout").innerHTML = arr4;
 
 
             let select = document.getElementById("ind");
@@ -57,6 +67,21 @@
         function selectindex() {
             let selectedIndex = document.getElementById("ind").selectedIndex;
             document.getElementById("out").innerHTML = arr[selectedIndex];
+        }
+
+        let e;
+
+        function searcharr() {
+
+            for (e = 0; e < arr.length; e++) {
+                if (arr[e] == Number(document.getElementById("search").value.trim())) {
+                    document.getElementById("searchout").innerHTML = "element is present";
+                    break;
+                }
+            }
+            if (e == arr.length) {
+                document.getElementById("searchout").innerHTML = "element not present";
+            }
         }
     </script>
 </body>
