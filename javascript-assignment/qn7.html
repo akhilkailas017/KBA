@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <label for="elements">Enter element: </label>
+    <input type="text" id="elements"><br><br>
+    <button onclick="addarray()">Add Elements</button>
+    <br><br>
+    <label>Entered array is <span id="output"></span></label><br><br>
+    <label>index <select id="ind" onclick="selectindex()"></select> th element is: <span id="out"></span></label>
+    <br><br>
+    <label>The Array is sorted order is :<span id="sortout"></span></label>
+
+    <script>
+        let arr = [], i = 1;
+        function addarray() {
+            let element = document.getElementById("elements").value.trim();
+            if (element !== "") {
+                arr.push(element);
+            }
+            else {
+                alert("empty");
+            }
+            document.getElementById("elements").value = "";
+            document.getElementById("output").innerHTML = arr;
+
+            let select = document.getElementById("ind");
+            let option = document.createElement("option");
+            option.textContent = i - 1;
+            select.appendChild(option);
+            i++;
+
+        }
+        function selectindex() {
+            let selectedIndex = document.getElementById("ind").selectedIndex;
+            document.getElementById("out").innerHTML = arr[selectedIndex];
+        }
+        
+
+       
+
+
+        document.getElementById("sortout").innerHTML=a;
+    </script>
+</body>
+
+</html>

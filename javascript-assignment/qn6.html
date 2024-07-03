@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <label for="elements">Enter element: </label>
+    <input type="text" id="elements"><br><br>
+    <button onclick="addarray()">Add Elements</button>
+    <br><br>
+    <label>Entered array is <span id="output"></span></label>
+
+    <script>
+        let arr = [];
+        function addarray() 
+        {
+            let element = document.getElementById("elements").value.trim();
+            if (element !== "") 
+            {
+                    arr.push(element);
+            } 
+            else 
+            {
+                alert("empty");
+            }
+            document.getElementById("elements").value = "";
+            document.getElementById("output").innerHTML = arr;
+        }
+    </script>
+</body>
+
+</html>
