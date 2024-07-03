@@ -1,58 +1,83 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    
 </head>
+
 <body>
     <label for="name">Enter name :</label>
     <input type="text" name="name" id="name">
-<br><br>
-<label for="mark">Enter mark :</label>
-<input type="text" name="mark" id="mark">
-<br><br>
-<button onclick="display()">Submit</button>
-<br><br>
-<p id="nameresult"></p>
-<p id="markresult"></p>
-<p id="avgmarkresult"></p>
+    <br><br>
+    <label for="mark">Enter mark :</label>
+    <input type="text" name="mark" id="mark">
+    <br><br>
+    <button onclick="addStudent()">Submit</button>
+    <br><br>
+    <p id="studentList"></p>
+    <p id="averageMark"></p>
 
-<br>
-<label for="search">Search by name :</label>
-<input type="text" name="search" id="search">
-<button onclick="search()">Search</button>
-<p id="searchresult"></p>
+    <br>
+    <label for="search">Search by name :</label>
+    <input type="text" name="search" id="search">
+    <button onclick="searchStudent()">Search</button>
+    <p id="searchResult"></p>
 
-<script>
-    let names=[];
-    let marks=[];
-    function display(){
-        let name=document.getElementById("name").value;
-        let mark=document.getElementById("mark").value;
+    <script>
+        let students = [];
 
-        names.push(name);
-        marks.push(Number(mark));
+        function addStudent() {
+            let name = document.getElementById("name").value;
+            let mark = document.getElementById("mark").value;
 
-        document.getElementById("nameresult").innerHTML="Names: " + names;
-        document.getElementById("markresult").innerHTML="Marks: " + marks;
+            students.push({ name: name, mark: mark });
 
-        let sum = 0;
-        for(let i = 0; i < marks.length; i++){
-            sum += marks[i];
+            document.getElementById("name").value = "";
+            document.getElementById("mark").value = "";
+
+            updateStudentList();
+            updateAverageMark();
         }
-        let avgMark = sum / marks.length;
-        document.getElementById("avgmarkresult").innerHTML="Average Mark: " + avgMark.toFixed(2);
-        
-        
-        document.getElementById("name").value = "";
-        document.getElementById("mark").value = "";
 
-        
-    }
+        function updateStudentList() {
+            let studentListHTML = "Student List: <br>";
+            for (let i = 0; i < students.length; i++) {
+                studentListHTML += students[i].name + " - " + students[i].mark + "<br>";
+            }
+            document.getElementById("studentList").innerHTML = studentListHTML;
+        }
 
+        function updateAverageMark() {
+            let sum = 0;
+            let count = 0;
+            for (let i = 0; i < students.length; i++) {
+                let mark = parseFloat(students[i].mark);
+                if (!isNaN(mark)) {
+                    sum += mark;
+                    count++;
+                }
+            }
+            if (count > 0) {
+                let averageMark = sum / count;
+                document.getElementById("averageMark").innerHTML = "Average Mark: " + averageMark.toFixed(2);
+            } else {
+                document.getElementById("averageMark").innerHTML = "No valid marks";
+            }
+        }
 
-</script>
+        function searchStudent() {
+            let searchName = document.getElementById("search").value;
+            for (let i = 0; i < students.length; i++) {
+                if (students[i].name === searchName) {
+                    document.getElementById("searchResult").innerHTML = "Mark of " + searchName + ": " + students[i].mark;
+                    return;
+                }
+            }
+            document.getElementById("searchResult").innerHTML = "Name not found";
+        }
+    </script>
 </body>
+
 </html>
