@@ -7,7 +7,7 @@ const inventory=new Map();
 function askcommand(){
     console.log("welcome to the inventory management cli");
     console.log("available commands: add,remove,search,update,summary,exit");
-    rl.question("\Enter a command",function(command){
+    rl.question("\Enter a command : ",function(command){
         switch(command.trim().toLowerCase()){
             case "add":
                 additemprompt();
@@ -69,6 +69,13 @@ function removeitem(id) {
         console.log(`error item with id ${id} not found`);
     }
 }
+//remove prompt
+function removeitemprompt() {
+    rl.question("enter id : ",function(id){
+        removeitem(id);
+        askcommand();
+    })
+    }
 // function to search for items
 function searchitems(searchterm) {
     const results = [];
@@ -84,6 +91,13 @@ function searchitems(searchterm) {
         console.log("item not found");
     }
 }
+//prompt to search
+function searchitemprompt() {
+rl.question("enter search term : ",function(searchterm){
+    searchitems(searchterm);
+    askcommand();
+})
+}
 // function to update an item
 function updateitem(id,newname,newcategory,newquantity){
     if(inventory.has(id)){
@@ -98,17 +112,31 @@ function updateitem(id,newname,newcategory,newquantity){
         console.log(`error item with id ${id} not found`);
     }
 }
+//update prompt
+function updateitemprompt(){
+    rl.question("enter item id : ",function(id){
+        rl.question("enter item name : ",function(name){
+            rl.question("enter item category : ",function(catagory){
+                rl.question("enter item quantity : ",function(quantity){
+                    updateitem(id,name,catagory,parseInt(quantity));
+                    askcommand();
+                })
+            })
+        })
+    })
+}
 //function to print a summary report of all items
 function printsummary(){
     if(inventory.size>0){
         console.log("inventory summary");
         for(const [id,item] of inventory){
-            console.log(`id ${id},name: ${item,name}, category:${item,category},quantity: ${item,quantity}`);
+            console.log(`id : ${id},name: ${item.name}, category : ${item.category},quantity : ${item.quantity}`);
         }
     }
     else{
         console.log("inventory is empty.")
     }
 }
+
 
 askcommand()
