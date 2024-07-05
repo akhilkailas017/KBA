@@ -22,8 +22,10 @@ document.addEventListener('DOMContentLoaded', function () {
 
 let x = 0, mark = 0;
 function showQuestion() {
-    document.getElementById("question").innerHTML = quiz[x].question;
 
+    setTimeout(nextQuestion, 3000);
+
+    document.getElementById("question").innerHTML = quiz[x].question;
 
     for (let i = 0; i < quiz[x].answers.length; i++) {
         const radio = document.createElement("input");
@@ -39,7 +41,6 @@ function showQuestion() {
         document.getElementById("answers").appendChild(label);
     }
 }
-
 function nextQuestion() {
     x++;
 
@@ -57,18 +58,20 @@ function nextQuestion() {
 
         for(i=0;i<quiz.length;i++){
         const out = document.createElement("p");
-        out.innerHTML = quiz[x].answers[i];
+        out.innerHTML = `Question ${i+1} : ${quiz[i].question} <br> Answer : ${quiz[i].correct}`;
         out.setAttribute("class", "answer");
-        document.getElementById("answers").appendChild(out);
+        document.getElementById("markout").appendChild(out);
         }
 
     }
 }
-
 function ansclick() {
     let answer = document.querySelector('input[name="answer"]:checked').value;
     if (answer == quiz[x].correct) {
         mark++;
     }
-    // nextQuestion();
 }
+
+function timeexpire(){
+    nextQuestion();
+  }
