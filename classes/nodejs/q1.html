@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dynamic Quiz Application</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f0f0f0;
+        }
+
+        #quiz-container {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 300px;
+            text-align: center;
+        }
+
+        #question-container {
+            margin-bottom: 20px;
+        }
+
+        #answers {
+            margin-top: 10px;
+            text-align: left;
+        }
+
+        button {
+            margin: 5px;
+        }
+
+        #timer {
+            margin-top: 20px;
+            font-size: 1.2em;
+            color: red;
+        }
+    </style>
+</head>
+<body>
+    <div id="quiz-container">
+        <div id="question-container">
+            <div id="question"></div>
+            <form id="answers-form">
+                <div id="answers"></div>
+            </form>
+        </div>
+        <button id="next-btn" onclick="nextQuestion()">Next</button>
+        <button id="submit-btn" onclick="submitQuiz()">Submit</button>
+        <div id="timer"></div>
+    </div>
+    <script>
+        const quiz = [
+            {
+                question: "What is the capital of France?",
+                answers: ["Paris", "London", "Berlin", "Madrid"],
+                correct: 0
+            },
+            {
+                question: "Which planet is known as the Red Planet?",
+                answers: ["Earth", "Mars", "Jupiter", "Saturn"],
+                correct: 1
+            },
+            {
+                question: "What is the largest ocean on Earth?",
+                answers: ["Atlantic", "Indian", "Arctic", "Pacific"],
+                correct: 3
+            }
+        ];
+
+        let currentQuestion = 0;
+        let score = 0;
+        let timer;
+        const timeLimit = 10;
+        const userAnswers = [];
+
+        document.addEventListener('DOMContentLoaded', function() {
+            showQuestion();
+            startTimer();
+        });
+
+        function showQuestion() {
+            const questionContainer = document.getElementById('question');
+            const answersContainer = document.getElementById('answers');
+            questionContainer.innerText = quiz[currentQuestion].question;
+            answersContainer.innerHTML = '';
+            quiz[currentQuestion].answers.forEach(function(answer, index) {
+                const label = document.createElement('label');
+                const input = document.createElement('input');
+                input.type = 'radio';
+                input.name = 'answer';
+                input.value = index;
+                label.appendChild(input);
+                label.appendChild(document.createTextNode(answer));
+                answersContainer.appendChild(label);
+                answersContainer.appendChild(document.createElement('br'));
+            });
+        }
+
+        function startTimer() {
+            let timeLeft = timeLimit;
+            const timerElement = document.getElementById('timer');
+            timer = setInterval(function() {
+                if (timeLeft <= 0) {
+                    clearInterval(timer);
+                    nextQuestion();
+                } else {
+                    timerElement.innerText = `Time left: ${timeLeft--}s`;
+                }
+            }, 1000);
+        }
+
+        function nextQuestion() {
+            saveAnswer();
+            if (currentQuestion < quiz.length - 1) {
+                clearInterval(timer);
+                currentQuestion++;
+                showQuestion();
+                startTimer();
+            } else {
+                submitQuiz();
+            }
+        }
+
+        function saveAnswer() {
+            const selectedAnswer = document.querySelector('input[name="answer"]:checked');
+            userAnswers[currentQuestion] = selectedAnswer ? parseInt(selectedAnswer.value) : null;
+            if (selectedAnswer && parseInt(selectedAnswer.value) === quiz[currentQuestion].correct) {
+                score++;
+            }
+        }
+
+        function submitQuiz() {
+            saveAnswer();
+            clearInterval(timer);
+            const quizContainer = document.getElementById('quiz-container');
+            quizContainer.innerHTML = `<h2>Your score is: ${score}/${quiz.length}</h2>
+                                       <button onclick="showResults()">Show Results</button>`;
+        }
+
+        function showResults() {
+            const quizContainer = document.getElementById('quiz-container');
+            let resultHTML = '<h2>Quiz Results</h2>';
+            quiz.forEach(function(q, index) {
+                resultHTML += `<div><strong>Question ${index + 1}:</strong> ${q.question}<br>
+                               <strong>Your answer:</strong> ${userAnswers[index]!== null? q.answers[userAnswers[index]] : 'No answer'}<br>
+                               <strong>Correct answer:</strong> ${q.answers[q.correct]}</div><br>`;
+            });
+            quizContainer.innerHTML = resultHTML;
+        }
+    </script>
+</body>
+</html>
