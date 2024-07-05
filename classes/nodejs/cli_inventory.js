@@ -1,4 +1,54 @@
-const inventory = new Map();
+const readline=require("readline");
+const rl=readline.createInterface({
+    input:process.stdin,
+    output:process.stdout
+});
+const inventory=new Map();
+function askcommand(){
+    console.log("welcome to the inventory management cli");
+    console.log("available commands: add,remove,search,update,summary,exit");
+    rl.question("\Enter a command",function(command){
+        switch(command.trim().toLowerCase()){
+            case "add":
+                additemprompt();
+                break;
+            case "remove":
+                removeitemprompt();
+                break;
+            case "search":
+                searchitemprompt();
+                break;
+            case "update":
+                updateitemprompt();
+                break;
+            case "summary":
+                printsummary();
+                askcommand();
+                break;
+            case "exit":
+                rl.close();
+                break;
+            default:
+                console.log("invalid command please try again!");
+                askcommand();
+                break;
+        }
+    })
+}
+//add item prompt
+function additemprompt(){
+    rl.question("enter item id : ",function(id){
+        rl.question("enter item name : ",function(name){
+            rl.question("enter item category : ",function(catagory){
+                rl.question("enter item quantity : ",function(quantity){
+                    additem(id,name,catagory,parseInt(quantity));
+                    askcommand();
+                })
+            })
+        })
+    })
+}
+// const inventory = new Map();
 // function to add an item
 function additem(id, name, category, quantity) {
     if (inventory.has(id)) {
@@ -60,16 +110,5 @@ function printsummary(){
         console.log("inventory is empty.")
     }
 }
-//hardcode values
-//adding item
-additem("1","laptop","electronics",10);
-additem("2","chair","furniture",100);
-additem("3","notebook","stationary",100);
-//removing an item
-removeitem("2");
-//searching for an item
-searchitems("laptop");
-searchitems("stationary");
-searchitems("1");
-//updating an item
-updateitem("1","gaming laptop","electronics",8);
+
+askcommand()
