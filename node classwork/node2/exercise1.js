@@ -72,6 +72,7 @@ function ansclick() {
     }
 }
 
-function timeexpire(){
-    nextQuestion();
-  }
+
+
+
+
