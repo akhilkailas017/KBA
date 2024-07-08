@@ -23,7 +23,8 @@ document.addEventListener('DOMContentLoaded', function () {
 let x = 0, mark = 0;
 function showQuestion() {
 
-    setTimeout(nextQuestion, 3000);
+    // setTimeout(nextQuestion, 3000);
+
 
     document.getElementById("question").innerHTML = quiz[x].question;
 
@@ -72,7 +73,18 @@ function ansclick() {
     }
 }
 
+let timer=3;
 
+function interval(){
+       
+    document.getElementById("countdown").innerHTML=timer;
+    timer=timer-1;
+    if(timer==0){
+        nextQuestion();
+        clearInterval();
+    }
+}
+setInterval(interval,1000);
 
 
 
