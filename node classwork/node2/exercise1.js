@@ -21,10 +21,10 @@ document.addEventListener('DOMContentLoaded', function () {
 });
 
 let x = 0, mark = 0;
+let intervalId;
+
+
 function showQuestion() {
-
-    // setTimeout(nextQuestion, 3000);
-
 
     document.getElementById("question").innerHTML = quiz[x].question;
 
@@ -41,8 +41,12 @@ function showQuestion() {
         document.getElementById("answers").appendChild(radio);
         document.getElementById("answers").appendChild(label);
     }
+
+    timer=3;
+    intervalId = setInterval(interval, 1000);
 }
 function nextQuestion() {
+    clearInterval(intervalId);
     x++;
 
     if (x < quiz.length) {
@@ -51,6 +55,9 @@ function nextQuestion() {
     } else {
         const btnnext = document.getElementById("next-btn");
         btnnext.remove();
+
+        document.getElementById("countdown").innerHTML = "";
+
         document.getElementById("question").innerHTML = " ";
         document.getElementById("answers").innerHTML = " ";
         const score = document.getElementById("score");
@@ -73,18 +80,15 @@ function ansclick() {
     }
 }
 
-let timer=3;
-
+let timer = 3;
 function interval(){
-       
-    document.getElementById("countdown").innerHTML=timer;
-    timer=timer-1;
-    if(timer==0){
+    document.getElementById("countdown").innerHTML = timer;
+    timer = timer - 1;
+    if(timer < 0){
         nextQuestion();
-        clearInterval();
     }
 }
-setInterval(interval,1000);
+
 
 
 
