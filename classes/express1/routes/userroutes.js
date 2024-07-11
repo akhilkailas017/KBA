@@ -1,9 +1,9 @@
-const express = require("express")
-const app = express();
-const port = 3000;
+const express=require("express");
+const router=express.Router()
 
 
-app.use(express.json());
+
+router.use(express.json());
 
 let users = [
     {
@@ -14,12 +14,12 @@ let users = [
     }
 ];
 
-app.get("/users", (req, res) => {
+router.get("/", (req, res) => {
     res.status(200);
     res.json(users);
 })
 
-app.post("/users", (req, res) => {
+router.post("/", (req, res) => {
     const newuser = req.body;
     newuser.id = users.length + 1;
     users.push(newuser);
@@ -28,7 +28,7 @@ app.post("/users", (req, res) => {
 
 
 
-app.put("/users/:id",(req,res)=>{
+router.put("/:id",(req,res)=>{
     const userid=parseInt(req.params.id) ;
     const updateuser=req.body;
     const userindex=users.findIndex(user=>user.id===userid);
@@ -42,7 +42,7 @@ app.put("/users/:id",(req,res)=>{
     }
 })
 
-app.delete("/users/:id",(req,res)=>{
+router.delete("/:id",(req,res)=>{
     const userid=parseInt(req.params.id) ;
     const userindex=users.findIndex(user=>user.id===userid);
 
@@ -55,12 +55,4 @@ app.delete("/users/:id",(req,res)=>{
     }
 })
 
-
-app.listen(port, (error) => {
-    if (!error) {
-        console.log("running on port " + port)
-    }
-    else {
-        console.log("error occured", error)
-    }
-})
+module.exports=router;
