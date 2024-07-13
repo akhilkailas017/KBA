@@ -1,14 +1,17 @@
 const express = require('express');
 const session = require('express-session');
+const cookieParser = require('cookie-parser');
 const app = express();
 
 app.use(express.json());
+
+app.use(cookieParser());
 
 // Configure session middleware
 app.use(session({
   secret: 'your-secret-key', // Secret used to sign the session ID cookie
   resave: false,
-  saveUninitialized: true,
+  saveUninitialized: false,
   cookie: { secure: false } // In production, set secure: true with HTTPS
 }));
 
@@ -35,6 +38,8 @@ app.get('/logout', (req, res) => {
     if (err) {
       return res.status(500).send('Failed to destroy session');
     }
+    res.clearCookie('connect.sid');
+    res.json({ message: 'Logout successful' });
     res.send('Session destroyed');
   });
 });

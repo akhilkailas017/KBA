@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ride Sharing - Active Rides</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-rose-200">
+
+<nav class="bg-rose-500 p-4">
+    <div class="container mx-auto flex justify-between items-center">
+        <div class="text-white text-2xl font-bold">Ride Sharing</div>
+        <ul class="flex space-x-4 text-white">
+            <li><a href="index.html" class="hover:text-gray-200">Home</a></li>
+            <li><a href="search.html" class="hover:text-gray-200">Search Rides</a></li>
+            <li><a href="offer.html" class="hover:text-gray-200">Offer Ride</a></li>
+            <li><a href="ride.html" class="hover:text-gray-200">Active Rides</a></li>
+            <li><a href="login.html" class="hover:text-gray-200">Login</a></li>
+            <li><a href="signup.html" class="hover:text-gray-200">Sign Up</a></li>
+            <li><a href="contact.html" class="hover:text-gray-200">Contact</a></li>
+        </ul>
+    </div>
+</nav>
+
+
+<div class="container mx-auto py-12">
+    <h2 class="text-3xl font-bold text-center mb-8">Active Rides</h2>
+    <div class="space-y-6">
+        <div class="p-6 bg-white border border-gray-300 rounded-lg shadow-sm">
+            <div class="flex justify-between items-center mb-4">
+                <div>
+                    <p class="text-lg font-bold">From: City A</p>
+                    <p class="text-lg font-bold">To: City B</p>
+                </div>
+                <div class="text-right">
+                    <p class="text-sm text-gray-700">Date: 2024-07-15</p>
+                    <p class="text-sm text-gray-700">Time: 09:00 AM</p>
+                </div>
+            </div>
+            <div class="flex justify-between items-center">
+                <p class="text-sm text-gray-700">Available Seats: 3</p>
+                <div class="space-x-2">
+                    <button class="bg-rose-500 text-white px-4 py-2 rounded-lg shadow-lg font-bold hover:bg-rose-600 ">Check Details</button>
+                    <button class="bg-rose-500 text-white px-4 py-2 rounded-lg shadow-lg font-bold hover:bg-rose-600 ">Book Ride</button>
+                </div>
+            </div>
+        </div>
+        <div class="p-6 bg-white border border-gray-300 rounded-lg shadow-sm">
+            <div class="flex justify-between items-center mb-4">
+                <div>
+                    <p class="text-lg font-bold">From: City C</p>
+                    <p class="text-lg font-bold">To: City D</p>
+                </div>
+                <div class="text-right">
+                    <p class="text-sm text-gray-700">Date: 2024-07-16</p>
+                    <p class="text-sm text-gray-700">Time: 01:00 PM</p>
+                </div>
+            </div>
+            <div class="flex justify-between items-center">
+                <p class="text-sm text-gray-700">Available Seats: 2</p>
+                <div class="space-x-2">
+                    <button class="bg-rose-500 text-white px-4 py-2 rounded-lg shadow-lg font-bold hover:bg-rose-500 ">Check Details</button>
+                    <button class="bg-rose-500 text-white px-4 py-2 rounded-lg shadow-lg font-bold hover:bg-rose-500 ">Book Ride</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+</body>
+</html>
