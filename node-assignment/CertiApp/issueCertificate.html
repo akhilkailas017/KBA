@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>Home </title>
+	<link rel="stylesheet" href="issue.css">
+</head>
+
+<body>
+	<nav style="float: right;">
+		<a href="index.html"><input type="button" value="Home" class="btn-home"></a>
+		<a href="issueCertificate.html"><input type="button" value="Issue Certificate" class="btn-issue"></a>
+	</nav>
+
+
+	<h3>Certificate Dapp</h3>
+	<br>
+
+
+
+	<div class="content">
+		<div class="content-1">
+
+
+		<h3 class="form-heading">Issue New Certificate </h3>
+
+		<form>
+			<label>Select Course *</label><br>
+			<select name="course">
+				<option value="cba">Certified Blockchain Associate</option>
+				<option value="deb" selected>Developer Essential for Blockchain</option>
+				<option value="bfp">Blockchain Foundation Programe</option>
+			</select><br><br>
+			<label>Certificate ID *</label><br>
+			<input type="text" name="name" required class="text-box"><br><br>
+			<label>Candidate name *</label><br>
+			<input type="text" name="cname" required class="text-box"><br><br>
+
+			<label>Select Grade *</label><br>
+			<select name="grade" required>
+				<option value="S">S</option>
+				<option value="A" selected>A</option>
+				<option value="B">B</option>
+				<option value="C">C</option>
+			</select><br><br>
+			<label>Issue Date *</label><br>
+			<input type="date" name="issuedate" required class="date-input" ><br><br>
+			<input type="submit" value="Issue Certificate" class="btn-issue-submit">
+
+
+		</form>
+
+	</div>
+	</div>
+
+	<script src="issue.js"></script>
+
+
+
+</body>
+
+</html>

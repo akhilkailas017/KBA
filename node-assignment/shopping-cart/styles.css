@@ -1,0 +1,91 @@
+body {
+    font-family: 'Open Sans', sans-serif;
+    background-color: #f7f7f7; /* changed to light gray */
+    padding: 20px;
+    color: #333; /* changed to dark gray */
+}
+
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+    background-color: #fff; /* changed to white */
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* changed to lighter shadow */
+}
+
+h1, h2 {
+    text-align: center;
+    color: #333; /* changed to dark gray */
+}
+
+.input-group {
+    margin-bottom: 20px;
+}
+
+.input-group label {
+    display: block;
+    margin-bottom: 5px;
+    color: #333; /* changed to dark gray */
+}
+
+.input-group select, .input-group input {
+    width: 100%;
+    padding: 8px;
+    box-sizing: border-box;
+    border: 1px solid #ccc; /* changed to light gray border */
+    border-radius: 4px;
+    background-color: #fff; /* changed to white */
+    color: #333; /* changed to dark gray */
+}
+
+button {
+    width: 100%;
+    padding: 10px;
+    background-color: blue; /* changed to green */
+    color: #fff; /* changed to white */
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #3e8e41; /* changed to darker green hover */
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+table th, table td {
+    padding: 10px;
+    border: 1px solid #ccc; /* changed to light gray border */
+    text-align: center;
+    color: #333; /* changed to dark gray */
+}
+
+table th {
+    background-color: #f0f0f0; /* changed to light gray */
+}
+
+.total {
+    text-align: right;
+    margin-top: 20px;
+    font-size: 1.2em;
+    color: #333; /* changed to dark gray */
+}
+
+button.remove {
+    background-color: blue; /* changed to a different shade of yellow */
+    border: none;
+    padding: 10px 20px;
+    font-size: 1.2em;
+    cursor: pointer;
+    border-radius: 4px;
+}
+
+button.remove:hover {
+    background-color: green; /* changed to a different shade of yellow hover */
+}
