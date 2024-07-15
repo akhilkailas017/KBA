@@ -11,9 +11,36 @@
 			<h3>Kerala Blockchain Academy</h3>
 			<img src="images/dapp-logo.png" width="20%">
 			<br><br>
-			<p>This id to certify that<br>has sucessfully completed<br>with on</p>
+			<p id="output-para">This id to certify that <span id="name-out"> </span> <br>has sucessfully completed <span id="course-out"> </span> <br>with <span id="grade-out"> </span> on <span id="date-out"> </span>  </p>
 			
 		</div>
+
+		<script>
+			function getCertificateDetails(certId) {
+				const certificate = localStorage.getItem(certId);
+				return certificate ? JSON.parse(certificate) : null;
+			}
+	
+			function displayCertificateDetails() {
+				const urlParams = new URLSearchParams(window.location.search);
+				const certId = urlParams.get('certId');
+				const certificate = getCertificateDetails(certId);
+
+				if (certificate) {
+
+					document.getElementById("name-out").innerHTML=`${certificate.candidateName}`;
+					document.getElementById("course-out").innerHTML=`${certificate.course}`;
+					document.getElementById("grade-out").innerHTML=`${certificate.grade}`;
+					document.getElementById("date-out").innerHTML=`${certificate.issueDate}`;
+
+				} else {
+					document.getElementById("output-para").innerHTML=`Certificate not found!`;
+					
+				}
+			}
+	
+			document.addEventListener('DOMContentLoaded', displayCertificateDetails);
+		</script>
 		
 	</body>
 </html>

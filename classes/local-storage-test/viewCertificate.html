@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>View Certificate</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <nav style="float: right;">
+        <a href="index.html"><input type="button" value="Home" class="btn-home"></a>
+        <a href="issueCertificate.html"><input type="button" value="Issue Certificate" class="btn-issue"></a>
+    </nav>
+
+    <h3>Certificate Dapp</h3>
+    <br>
+
+    <div class="content">
+        <div class="content-1">
+            <h3 class="form-heading">Certificate Details</h3>
+            <div id="certificateDetails"></div>
+        </div>
+    </div>
+
+    <script>
+        function getCertificateDetails(certId) {
+            const certificate = localStorage.getItem(certId);
+            return certificate ? JSON.parse(certificate) : null;
+        }
+
+        function displayCertificateDetails() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const certId = urlParams.get('certId');
+            const certificate = getCertificateDetails(certId);
+
+            const certDetailsDiv = document.getElementById('certificateDetails');
+            if (certificate) {
+                certDetailsDiv.innerHTML = `
+                    <p><strong>Course:</strong> ${certificate.course}</p>
+                    <p><strong>Certificate ID:</strong> ${certificate.certId}</p>
+                    <p><strong>Candidate Name:</strong> ${certificate.candidateName}</p>
+                    <p><strong>Grade:</strong> ${certificate.grade}</p>
+                    <p><strong>Issue Date:</strong> ${certificate.issueDate}</p>
+                `;
+            } else {
+                certDetailsDiv.innerHTML = `<p>Certificate not found!</p>`;
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', displayCertificateDetails);
+    </script>
+</body>
+
+</html>

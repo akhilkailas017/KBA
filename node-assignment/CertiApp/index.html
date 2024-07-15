@@ -3,7 +3,7 @@
 
 <head>
 	<title>Home</title>
-	<link rel="stylesheet" href="style.css">
+	<link rel="stylesheet" href="index.css">
 </head>
 
 <body>
@@ -26,13 +26,22 @@
 
 
 		<div class="input">
-			<form>
-				<input type="text" name="text" placeholder="Enter Certificate ID to View" class="textfield">
-				<a href="viewCertificate.html"><input type="button" value="Search" class="btn-search"></a>
+			<form onsubmit="searchCertificate(event)">
+				<input type="text" id="certId" required name="text" placeholder="Enter Certificate ID to View" class="textfield">
+				<a href="viewCertificate.html"><input type="submit" value="Search" class="btn-search"></a>
 			</form>
 		</div>
 
 	</div>
+
+	<script>
+		
+        function searchCertificate(event) {
+            event.preventDefault();
+            const certId = document.getElementById('certId').value;
+            window.location.href = `viewCertificate.html?certId=${certId}`;
+        }
+    </script>
 
 
 </body>

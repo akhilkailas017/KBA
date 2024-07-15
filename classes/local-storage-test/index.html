@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Search Certificate</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <nav style="float: right;">
+        <a href="index.html"><input type="button" value="Home" class="btn-home"></a>
+        <a href="issueCertificate.html"><input type="button" value="Issue Certificate" class="btn-issue"></a>
+    </nav>
+
+    <h3>Certificate Dapp</h3>
+    <br>
+
+    <div class="content">
+        <div class="content-1">
+            <h3 class="form-heading">Search Certificate</h3>
+
+            <form onsubmit="searchCertificate(event)">
+                <label>Certificate ID *</label><br>
+                <input type="text" id="certId" required class="text-box"><br><br>
+                <input type="submit" value="Search Certificate" class="btn-search">
+            </form>
+        </div>
+    </div>
+
+    <script>
+        function searchCertificate(event) {
+            event.preventDefault();
+            const certId = document.getElementById('certId').value;
+            window.location.href = `viewCertificate.html?certId=${certId}`;
+        }
+    </script>
+</body>
+
+</html>
