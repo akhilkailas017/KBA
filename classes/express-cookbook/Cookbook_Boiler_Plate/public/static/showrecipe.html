@@ -19,13 +19,10 @@
       class="bg-blue-500 text-white p-4 flex justify-between items-center"
     >
       <nav class="flex space-x-4">
-        <!-- <a href="/home" class="text-white text-lg">Home</a> -->
-        <a href="home.html" class="text-white text-lg">Home</a>
-        <!-- <a href="/favourites" class="text-white text-lg">Favourites</a> -->
-        <a href="favourites.html" class="text-white text-lg">Favourites</a>
+        <a href="/home" class="text-white text-lg">Home</a>
+        <a href="/favourites" class="text-white text-lg">Favourites</a>
       </nav>
-      <!-- <form action="/logout" method="POST"> -->
-      <form action="/">
+      <form action="/logout" method="POST">
         <button type="submit" class="bg-white text-blue-500 rounded px-4 py-1">
           Logout
         </button>
@@ -75,66 +72,66 @@
             starIcon.style.color = 'grey';
         }
 
-        //saverecipe();
+        saverecipe();
     }
 
-    // async function saverecipe() {
-    //     const recipeId = window.location.pathname.split("/").pop();
-    //     console.log(recipeId);
-    //     const response = await fetch(`/search/recipe/dish/${recipeId}`);
-    //     console.log(response);
-    //     const recipe = await response.json();
+    async function saverecipe() {
+        const recipeId = window.location.pathname.split("/").pop();
+        console.log(recipeId);
+        const response = await fetch(`/search/recipe/dish/${recipeId}`);
+        console.log(response);
+        const recipe = await response.json();
         
-    //     const title = recipe.title;
+        const title = recipe.title;
 
-    //     const image = recipe.image;
+        const image = recipe.image;
 
-    //     try {
-    //             const response = await fetch('/add/favourites', {
-    //                 method: 'POST',
-    //                 headers: {
-    //                     'Content-Type': 'application/json'
-    //                 },
-    //                 body: JSON.stringify({ title, image, recipeId })
-    //             });
+        try {
+                const response = await fetch('/add/favourites', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ title, image, recipeId })
+                });
 
-    //             const data = await response.json();
+                const data = await response.json();
 
-    //             if (response.ok) {
-    //                 alert('Recipe added to favorites!');
-    //             } else {
-    //                 alert('Failed to add recipe to favorites: ' + data.message);
-    //             }
+                if (response.ok) {
+                    alert('Recipe added to favorites!');
+                } else {
+                    alert('Failed to add recipe to favorites: ' + data.message);
+                }
 
-    //             console.log(data.message);
-    //         } catch (error) {
-    //             console.error('Error adding to favorites:', error);
-    //             alert('Error adding to favorites. Please try again later.');
-    //         }
-    // }
+                console.log(data.message);
+            } catch (error) {
+                console.error('Error adding to favorites:', error);
+                alert('Error adding to favorites. Please try again later.');
+            }
+    }
     
-    //   async function fetchRecipeDetails() {
-    //     const recipeId = window.location.pathname.split("/").pop();
-    //     console.log(recipeId);
-    //     const response = await fetch(`/search/recipe/dish/${recipeId}`);
-    //     console.log(response);
-    //     const recipe = await response.json();
+      async function fetchRecipeDetails() {
+        const recipeId = window.location.pathname.split("/").pop();
+        console.log(recipeId);
+        const response = await fetch(`/search/recipe/dish/${recipeId}`);
+        console.log(response);
+        const recipe = await response.json();
 
-    //     document.getElementById("recipeTitle").textContent = recipe.title;
-    //     document.getElementById("recipeImage").src = recipe.image;
-    //     document.getElementById("recipeIngredients").innerHTML =
-    //       recipe.extendedIngredients
-    //         .map((ingredient) => `<li>${ingredient.name}</li>`)
-    //         .join("");
-    //     const modifiedInstructions = recipe.instructions.replace(
-    //       /<\/?[^>]+(>|$)/g,
-    //       ""
-    //     );
-    //     document.getElementById("recipeInstructions").textContent =
-    //       modifiedInstructions;
-    //   }
+        document.getElementById("recipeTitle").textContent = recipe.title;
+        document.getElementById("recipeImage").src = recipe.image;
+        document.getElementById("recipeIngredients").innerHTML =
+          recipe.extendedIngredients
+            .map((ingredient) => `<li>${ingredient.name}</li>`)
+            .join("");
+        const modifiedInstructions = recipe.instructions.replace(
+          /<\/?[^>]+(>|$)/g,
+          ""
+        );
+        document.getElementById("recipeInstructions").textContent =
+          modifiedInstructions;
+      }
 
-    //   document.addEventListener("DOMContentLoaded", fetchRecipeDetails);
+      document.addEventListener("DOMContentLoaded", fetchRecipeDetails);
     </script>
   </body>
 </html>

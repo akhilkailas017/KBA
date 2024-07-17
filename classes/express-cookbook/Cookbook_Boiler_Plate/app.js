@@ -1,17 +1,13 @@
-const express=require('express');
-const app=express();
+const express = require ('express');
+const session = require ('express-session')
 
-const session = require ('express-session');
+const app = express();
 
+const pageroute = require('./src/routes/pageroutes')
 
-const dotenv=require('dotenv');
-dotenv.config();
+const loginroute = require('./src/routes/loginroutes')
 
-
-const pageroute=require('./src/routes/pageroutes');
-const loginroute = require('./src/routes/loginroutes');
-const auth=require('./src/middleware/auth')
-app.use('/',pageroute,loginroute);
+const apiroute = require('./src/routes/apiroutes')
 
 app.use(session({
     secret: '1',
@@ -19,7 +15,8 @@ app.use(session({
     saveUninitialized: false
 }))
 
+app.use('/', pageroute, loginroute, apiroute);
 
-app.listen(3000,()=>{
-    console.log('server is running on port 3000');
+app.listen(3001, () => {
+    console.log("The server is starting at port 3000")
 })
