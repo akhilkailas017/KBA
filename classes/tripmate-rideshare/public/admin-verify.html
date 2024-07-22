@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trip Mate | Admin Verify</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body>
+    <nav>
+        <div class="flex flex-row justify-between items-center w-full h-20 bg-gray-800 text-white px-10">
+            <div class="flex flex-row items-center text-[55px] font-bold">Tripmate Admin</div>
+            <div class="flex flex-row items-center gap-[25px]">
+                <a href="admin-login.html" class="text-xl font-bold">Logout</a>
+            </div>
+        </div>
+    </nav>
+
+    <main class="flex flex-col justify-center items-center h-screen bg-gray-600">
+        <div class="bg-white rounded-md shadow-md p-10 w-1/2">
+            <h2 class="text-3xl font-bold mb-4">Verification Requests</h2>
+            <div class="grid grid-cols-1 gap-4">
+                <!-- Card 1 -->
+                <div class="bg-white rounded-md shadow-md p-4">
+                    <h3 class="text-lg font-bold">johnDoe</h3>
+                    <p class="text-sm text-gray-600">Name: John Doe</p>
+                    <p class="text-sm text-gray-600">Age: 25</p>
+                    <p class="text-sm text-gray-600">Gender: Male</p>
+                    <p class="text-sm text-gray-600">Phone Number: 1234567890</p>
+                    <p class="text-sm text-gray-600">Email: johndoe@example.com</p>
+                    <p class="text-sm text-gray-600">Vehicle Number: KA-01-HG-1234</p>
+                    <p class="text-sm text-gray-600">Number Plate: KA-01-HG-1234</p>
+                    <p class="text-sm text-gray-600">Status: Pending</p>
+                    <div class="flex flex-row justify-end gap-2">
+                        <button class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded">Verify</button>
+                        <button class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded">Reject</button>
+                    </div>
+                </div>
+
+                <!-- Card 2 -->
+                <div class="bg-white rounded-md shadow-md p-4">
+                    <h3 class="text-lg font-bold">janeDoe</h3>
+                    <p class="text-sm text-gray-600">Name: Jane Doe</p>
+                    <p class="text-sm text-gray-600">Age: 28</p>
+                    <p class="text-sm text-gray-600">Gender: Female</p>
+                    <p class="text-sm text-gray-600">Phone Number: 9876543210</p>
+                    <p class="text-sm text-gray-600">Email: janedoe@example.com</p>
+                    <p class="text-sm text-gray-600">Vehicle Number: KA-02-JG-5678</p>
+                    <p class="text-sm text-gray-600">Number Plate: KA-02-JG-5678</p>
+                    <p class="text-sm text-gray-600">Status: Pending</p>
+                    <div class="flex flex-row justify-end gap-2">
+                        <button class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded">Verify</button>
+                        <button class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded">Reject</button>
+                    </div>
+                </div>
+
+                <!-- Add more cards for each verification request -->
+            </div>
+        </div>
+    </main>
+</body>
+</html>

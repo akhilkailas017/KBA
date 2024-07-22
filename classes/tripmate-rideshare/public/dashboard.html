@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trip Mate | Dashboard</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body>
+
+    <nav>
+        <div class="flex flex-row justify-between items-center w-full h-20 bg-gray-800 text-white px-10">
+            <div class="flex flex-row items-center text-[55px] font-bold">Tripmate</div>
+            <div class="flex flex-row items-center gap-[25px]">
+                <a href="profile.html" class="text-xl font-bold">Profile</a>
+                <a href="offer.html" class="text-xl font-bold">Offer Ride</a>
+                <a href="#" class="text-xl font-bold">Logout</a>
+            </div>
+        </div>
+    </nav>
+
+    <section class="bg-gray-600 py-20 h-screen">
+        <h2 class="text-3xl font-bold text-center mb-10 text-white">Search Ride</h2>
+        <form class="max-w-md mx-auto p-10 bg-white rounded shadow-md">
+            <div class="flex flex-col mb-5">
+                <label for="departure" class="text-lg font-bold">Departure</label>
+                <input type="text" id="departure" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" />
+            </div>
+            <div class="flex flex-col mb-5">
+                <label for="arrival" class="text-lg font-bold">Arrival</label>
+                <input type="text" id="arrival" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" />
+            </div>
+            <div class="flex flex-col mb-5">
+                <label for="date" class="text-lg font-bold">Date</label>
+                <input type="date" id="date" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" />
+            </div>
+            <div class="flex flex-col mb-5">
+                <label for="seats" class="text-lg font-bold">Number of Seats</label>
+                <input type="number" id="seats" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" />
+            </div>
+            <button type="submit" class="bg-orange-500 hover:bg-orange-700 text-white font-bold py-2 px-4 rounded">Search Ride</button>
+        </form>
+    </section>
+
+    <section class="bg-gray-600 py-20">
+        <h2 class="text-3xl font-bold text-center mb-10 text-white">Search Results</h2>
+        <div class="max-w-md mx-auto p-10 bg-white rounded shadow-md">
+            <ul>
+                <li class="flex flex-row justify-between mb-5">
+                    <div class="flex flex-col">
+                        <span class="text-lg font-bold">Seat Available: 4</span>
+                        <span class="text-lg">Vehicle Name: Toyota Innova</span>
+                        <span class="text-lg">Vehicle Number: KA-01-HG-1234</span>
+                        <span class="text-lg">Driver Name: John Doe</span>
+                        <span class="text-lg">Phone Number: 9876543210</span>
+                        <span class="text-lg">Time: 10:00 AM</span>
+                    </div>
+                    <button class="bg-orange-500 hover:bg-orange-700 text-white font-bold py-2 px-4 rounded">Book Ride</button>
+                </li>
+                <li class="flex flex-row justify-between mb-5">
+                    <div class="flex flex-col">
+                        <span class="text-lg font-bold">Seat Available: 4</span>
+                        <span class="text-lg">Vehicle Name: Toyota Innova</span>
+                        <span class="text-lg">Vehicle Number: KA-01-HG-1234</span>
+                        <span class="text-lg">Driver Name: John Doe</span>
+                        <span class="text-lg">Phone Number: 9876543210</span>
+                        <span class="text-lg">Time: 10:00 AM</span>
+                    </div>
+                    <button class="bg-orange-500 hover:bg-orange-700 text-white font-bold py-2 px-4 rounded">Book Ride</button>
+                </li>
+                <li class="flex flex-row justify-between mb-5">
+                    <div class="flex flex-col">
+                        <span class="text-lg font-bold">Seat Available: 4</span>
+                        <span class="text-lg">Vehicle Name: Toyota Innova</span>
+                        <span class="text-lg">Vehicle Number: KA-01-HG-1234</span>
+                        <span class="text-lg">Driver Name: John Doe</span>
+                        <span class="text-lg">Phone Number: 9876543210</span>
+                        <span class="text-lg">Time: 10:00 AM</span>
+                    </div>
+                    <button class="bg-orange-500 hover:bg-orange-700 text-white font-bold py-2 px-4 rounded">Book Ride</button>
+                </li>
+            </ul>
+        </div>
+    </section>
+
+</body>
+</html>
