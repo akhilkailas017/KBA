@@ -8,69 +8,80 @@
 </head>
 
 <body>
-    <h1>Employee List</h1>
-    <form id="addEmployeeForm" action="/addEmployee" method="POST">
-        <input type="text" name="name" placeholder="Employee Name" required>
-        <input type="text" name="role" placeholder="Employee Role" required>
-        <button type="submit">Add Employee</button>
-    </form>
-    <h2>Employees</h2>
-    <ul id="employeeList"></ul>
-
+    <div>
+        <h1>Employee List</h1>
+        <label for="nameInput">Enter employee name</label>
+        <input type="text" id="nameInput"><br><br>
+        <label for="roleInput">Enter employee role</label>
+        <input type="text" id="roleInput"><br><br>
+        <button onclick="addEmployee()">Add</button>
+        <ul id="employeeList"></ul>
+    </div>
     <script>
-        async function loadEmployees() {
-            const response = await fetch('/employees');
-            const employees = await response.json();
-            const employeeList = document.getElementById('employeeList');
-            employeeList.innerHTML = '';
-
-            employees.forEach((employee, index) => {
-                const li = document.createElement('li');
-                li.innerHTML = `
-                    ${employee.name} - ${employee.role}
-                    <button onclick="editEmployee(${index})">Edit</button>
-                    <form action="/deleteEmployee" method="POST" style="display:inline;">
-                        <input type="hidden" name="index" value="${index}">
-                        <button type="submit">Delete</button>
-                    </form>
-                `;
-                employeeList.appendChild(li);
-            });
-        }
-
-        function editEmployee(index) {
-            const name = prompt('Enter new name:');
-            const role = prompt('Enter new role:');
-            if (name !== null && role !== null) {
-                fetch('/updateEmployee', {
+        async function addEmployee() {
+            const nameInput = document.getElementById("nameInput");
+            const roleInput = document.getElementById("roleInput");
+            const name = nameInput.value.trim();
+            const role = roleInput.value.trim();
+            if (name && role) {
+                const response = await fetch('/api/employees', {
                     method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/x-www-form-urlencoded'
-                    },
-                    body: `index=${index}&name=${encodeURIComponent(name)}&role=${encodeURIComponent(role)}`
-                }).then(() => {
-                    loadEmployees();
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ name, role })
                 });
+                if (response.ok) {
+                    const employee = await response.json();
+                    renderEmployee(employee);
+                    nameInput.value = "";
+                    roleInput.value = "";
+                }
             }
         }
 
-        document.getElementById('addEmployeeForm').addEventListener('submit', function (event) {
-            event.preventDefault();
-            const name = this.querySelector('input[name="name"]').value;
-            const role = this.querySelector('input[name="role"]').value;
-            fetch(this.action, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/x-www-form-urlencoded'
-                },
-                body: `name=${encodeURIComponent(name)}&role=${encodeURIComponent(role)}`
-            }).then(() => {
-                this.reset();
-                loadEmployees();
-            });
-        });
+        async function getEmployees() {
+            const response = await fetch('/api/employees');
+            const employees = await response.json();
+            employees.forEach(employee => renderEmployee(employee));
+        }
 
-        loadEmployees();
+        async function updateEmployee(id) {
+            const newName = prompt("Update the employee name:");
+            const newRole = prompt("Update the employee role:");
+            if (newName && newRole) {
+                const response = await fetch(`/api/employees/${id}`, {
+                    method: 'PUT',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ name: newName, role: newRole })
+                });
+                if (response.ok) {
+                    const employee = await response.json();
+                    document.getElementById(`name-${id}`).textContent = employee.name;
+                    document.getElementById(`role-${id}`).textContent = employee.role;
+                }
+            }
+        }
+
+        async function deleteEmployee(id) {
+            const response = await fetch(`/api/employees/${id}`, { method: 'DELETE' });
+            if (response.ok) {
+                document.getElementById(`item-${id}`).remove();
+            }
+        }
+
+        function renderEmployee(employee) {
+            const employeeList = document.getElementById("employeeList");
+            const li = document.createElement("li");
+            li.id = `item-${employee.id}`;
+            li.innerHTML = `
+                <span id="name-${employee.id}">${employee.name}</span> - 
+                <span id="role-${employee.id}">${employee.role}</span>
+                <button onclick="updateEmployee(${employee.id})">Edit</button>
+                <button onclick="deleteEmployee(${employee.id})">Delete</button>
+            `;
+            employeeList.appendChild(li);
+        }
+
+        document.addEventListener("DOMContentLoaded", getEmployees);
     </script>
 </body>
 
