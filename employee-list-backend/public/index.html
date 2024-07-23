@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Employee List</title>
+</head>
+
+<body>
+    <h1>Employee List</h1>
+    <form id="addEmployeeForm" action="/addEmployee" method="POST">
+        <input type="text" name="name" placeholder="Employee Name" required>
+        <input type="text" name="role" placeholder="Employee Role" required>
+        <button type="submit">Add Employee</button>
+    </form>
+    <h2>Employees</h2>
+    <ul id="employeeList"></ul>
+
+    <script>
+        async function loadEmployees() {
+            const response = await fetch('/employees');
+            const employees = await response.json();
+            const employeeList = document.getElementById('employeeList');
+            employeeList.innerHTML = '';
+
+            employees.forEach((employee, index) => {
+                const li = document.createElement('li');
+                li.innerHTML = `
+                    ${employee.name} - ${employee.role}
+                    <button onclick="editEmployee(${index})">Edit</button>
+                    <form action="/deleteEmployee" method="POST" style="display:inline;">
+                        <input type="hidden" name="index" value="${index}">
+                        <button type="submit">Delete</button>
+                    </form>
+                `;
+                employeeList.appendChild(li);
+            });
+        }
+
+        function editEmployee(index) {
+            const name = prompt('Enter new name:');
+            const role = prompt('Enter new role:');
+            if (name !== null && role !== null) {
+                fetch('/updateEmployee', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/x-www-form-urlencoded'
+                    },
+                    body: `index=${index}&name=${encodeURIComponent(name)}&role=${encodeURIComponent(role)}`
+                }).then(() => {
+                    loadEmployees();
+                });
+            }
+        }
+
+        document.getElementById('addEmployeeForm').addEventListener('submit', function (event) {
+            event.preventDefault();
+            const name = this.querySelector('input[name="name"]').value;
+            const role = this.querySelector('input[name="role"]').value;
+            fetch(this.action, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded'
+                },
+                body: `name=${encodeURIComponent(name)}&role=${encodeURIComponent(role)}`
+            }).then(() => {
+                this.reset();
+                loadEmployees();
+            });
+        });
+
+        loadEmployees();
+    </script>
+</body>
+
+</html>
