@@ -1,8 +1,9 @@
 import { useState } from "react";
 import "./Card.css";
-const Card = ({ h2Style }) => {
+const Card = ({ h2Style , a}) => {
   
   const [likes, setLikes] = useState(0);
+  const [dislike, setDislike] = useState('Like');
 
   const buttonStyle = {
     marginTop: "10px",
@@ -21,8 +22,19 @@ const Card = ({ h2Style }) => {
       <h2 style={h2Style}>Now Hapenning</h2>
 
       <h3>
-        <button style={buttonStyle} onClick={() => setLikes(likes + 1)}>
+        <button style={buttonStyle} onClick={() => setLikes(likes + a)}>
           Likes: {likes}
+        </button>
+      </h3>
+      <h3>
+        <button style={buttonStyle} onClick={() => {
+          if(dislike=='like'){
+            setDislike('dislike')
+          }
+          else{
+            setDislike('like')
+          }
+        }}>{dislike}
         </button>
       </h3>
     </div>

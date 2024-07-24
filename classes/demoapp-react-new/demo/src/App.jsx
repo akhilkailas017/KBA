@@ -37,8 +37,8 @@ function App() {
         <li>{colors[2]}</li>
       </ul>
       <Demo />
-      <Card />
-      <Card h2Style={redStyle} />
+      <Card a={2} />
+      <Card h2Style={redStyle} a={1} />
       
     </>
   );
