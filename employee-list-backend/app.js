@@ -22,7 +22,7 @@ app.post('/api/employees', (req, res) => {
         employees.push(newEmployee);
         res.status(201).json(newEmployee);
     } else {
-        res.status(400).json({ error: 'Name and role are required' });
+        res.status(400).json({ error: 'enter both name and roll' });
     }
 });
 
@@ -36,7 +36,7 @@ app.put('/api/employees/:id', (req, res) => {
         employee.role = role;
         res.json(employee);
     } else {
-        res.status(404).json({ error: 'Employee not found or invalid data' });
+        res.status(404).json({ error: 'invalid data' });
     }
 });
 
