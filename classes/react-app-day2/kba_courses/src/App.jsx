@@ -1,25 +1,36 @@
 
+import { createBrowserRouter, createRoutesFromElements, RouterProvider, Route } from 'react-router-dom'
+import Homepage from './pages/Homepage';
+import Coursespage from './pages/Coursespage';
+import Notfoundpage from './pages/Notfoundpage';
+import Contactpage from './pages/Contactpage'
+import Mainlayout from './layouts/Mainlayout';
+import Addcoursepage from './pages/Addcoursepage';
+import Coursepage from './pages/Coursepage';
+import Editcoursepage from './pages/Editcoursepage';
 
-import Button from './components/Button'
-import CourseCards from './components/CourseCards'
-import Hero from './components/Hero'
-import Navbar from './components/Navbar'
+
 function App() {
-  
+
+  const router = createBrowserRouter(createRoutesFromElements(
+    <>
+      <Route path='/' element={<Mainlayout />}>
+        <Route path='/' element={<Homepage />} />
+        <Route path='/courses' element={<Coursespage />} />
+        <Route path='/contact' element={<Contactpage />} />
+        <Route path='/addcourse' element={<Addcoursepage/>} />
+        <Route path='/course' element={<Coursepage/>} />
+        <Route path='/editcourse' element={<Editcoursepage/>} />
+        <Route path='*' element={<Notfoundpage />} />
+      </Route>
+    </>
+
+
+  ))
 
   return (
     <>
-    {/* <!-- navbar  --> */}
-    <Navbar/>
-
-   {/* <!-- hero  --> */}
-   <Hero/>
-
-   {/* <!-- cards --> */}
-    <CourseCards/>
-
-   {/* <!-- all courses button --> */}
-    <Button/>
+      <RouterProvider router={router} />
     </>
   )
 }
