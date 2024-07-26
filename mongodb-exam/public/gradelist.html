@@ -6,9 +6,9 @@
     <title>grade</title>
     
 </head>
-<body class="bg-gray-100 p-8">
-    <div class="max-w-3xl mx-auto bg-white p-4 rounded-md shadow-md">
-        <h1 class="text-3xl font-bold mb-4">grade list: <span id="grade"></span></h1>
+<body ">
+    <div >
+        <h1>grade list: <span id="grade"></span></h1>
         <div id="gradelist"></div>
     </div>
 
@@ -27,7 +27,6 @@
 
                 studentinfo.forEach(student => {
                     const listelement = document.createElement('div');
-                    listelement.classList.add('bg-gray-200', 'p-4', 'my-4', 'rounded-md');
                     listelement.innerHTML = `
                         <h4 >student Name: ${student.studentName}</h4>
                         <p >student id: ${student.studentId}</p>
@@ -39,7 +38,6 @@
             } catch (error) {
                 console.error('Error fetching or parsing data:', error);
                 const errorMessage = document.createElement('div');
-                errorMessage.classList.add('bg-red-200', 'text-red-900', 'p-4', 'rounded-md', 'my-4');
                 errorMessage.textContent = 'error fetching data';
                 document.body.appendChild(errorMessage);
             }
