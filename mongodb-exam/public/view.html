@@ -32,7 +32,7 @@
             try {
                 const response = await fetch(`/api/student/${id}`);
                 if (!response.ok) {
-                    throw new Error('Failed to fetch appointment details');
+                    throw new Error('Failed to fetch details');
                 }
                 const data = await response.json();
                 document.getElementById('studentId').textContent = `ID: ${data.studentId}`;
