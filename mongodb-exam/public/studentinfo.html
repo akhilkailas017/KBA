@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>studentinfo</title>
+    <!-- <script src="https://cdn.tailwindcss.com"></script> -->
+</head>
+<body >
+    <div >
+        <h1>Add Student info</h1>
+        <form id="student" action="/submit" method="POST">
+            <div >
+                <label for="id">student ID</label>
+                <input type="text" id="studentId" name="studentId"required>
+            </div>
+            <div>
+                <label for="title" >student Name</label>
+                <input type="text" id="studentName" name="studentName" required>
+            </div>
+            <div>
+                <label for="description">Enrollment Date</label>
+                <input type="date" id="enrollmentDate" name="enrollmentDate" required>
+            </div>
+            <div class="mb-4">
+                <label for="date">grade</label>
+                <input type="text" id="grade" name="grade"  required>
+            </div>
+            <button type="submit">Submit</button>
+        </form>
+    </div>
+</body>
+</html>

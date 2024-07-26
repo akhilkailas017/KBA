@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Update Details</title>
+    <!-- <script src="https://cdn.tailwindcss.com"></script> -->
+</head>
+<body>
+    <div>
+        <h2>Update Details</h2>
+        <form onsubmit="updatedetail(); return false;">
+            <div>
+                <label for="updateName" >Name</label>
+                <input type="text" id="updateName" required>
+            </div>
+            <div >
+                <label for="updateenrollmentDate">enrollment Date</label>
+                <input type="text" id="updateenrollmentDate" required>
+            </div>
+            <div class="mb-4">
+                <label for="grade" >grade</label>
+                <input type="text" id="updategrade" required>
+            </div>
+            
+
+            <button type="submit">Submit</button>
+        </form>
+    </div>
+    <script>
+        async function updatedetail() {
+            const id = window.location.pathname.split('/').pop();
+            const studentName = document.getElementById('updateName').value;
+            const enrollmentDate = document.getElementById('updateenrollmentDate').value;
+            const grade = document.getElementById('updategrade').value;
+            
+            try {
+                const response = await fetch(`/api/student/${id}`, {
+                    method: 'PUT',
+                    headers: {'Content-Type': 'application/json', },
+                    body: JSON.stringify({ studentName, enrollmentDate,grade}),
+                });
+                if (!response.ok) {
+                    throw new Error('Failed to update details');
+                }
+                alert('details updated successfully');
+                window.location.href = `/student/${id}`;
+            } catch (error) {
+                console.error('Error updating  details:', error);
+                alert('Failed to update details');
+            }
+        }
+    </script>
+</body>
+</html>

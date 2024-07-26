@@ -1,0 +1,1 @@
+Design a Student Information System for a University. It should include Student ID, Name, Course, Enrollment Date, and Grade. Implement all 4 REST API Methods (GET, POST, PUT, DELETE) with database connectivity and display all students enrolled. It should also display all the students with particular grade. If S grade means all students who got S grade should be displayed.

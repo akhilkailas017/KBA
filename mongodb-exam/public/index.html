@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Information System</title>
+    <!-- <script src="https://cdn.tailwindcss.com"></script> -->
+</head>
+
+<body >
+    <div >
+        <h1>Student Information System</h1>
+        
+        <div>
+            <a href="/studentinfo">add new student</a>
+        </div>
+        <div>
+            <label for="">enter id</label>
+            <input type="text" id="studentId" name="studentId" 
+                placeholder="Enter ID to View Details">
+            <button onClick="searchid()">
+                View  Details
+            </button>
+        </div>
+
+        <div>
+            <label for="">enter grade</label>
+            <input type="text" id="grade" name="grade"
+                placeholder="Enter grade to View Details">
+            <button onClick="searchgrade()">
+                View students
+            </button>
+        </div><br>
+        <button onclick="showallstudent()">show all</button>
+    </div>
+    <script>
+        function searchid() {
+            const studentId = document.getElementById('studentId').value;
+            const url = `/student/${studentId}`;
+            window.location.href = url;
+        }
+   
+        function searchgrade() {
+            const grade = document.getElementById('grade').value;
+            const url = `/students/grade/${grade}`;
+            window.location.href = url;
+        }
+
+        function showallstudent(){
+           window.location.href=`/allstudents`
+        }
+   
+   </script>
+</body>
+
+</html>

@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>View student info</title>
+    <!-- <script src="https://cdn.tailwindcss.com"></script> -->
+</head>
+<body >
+    <div >
+        <p id="studentId"></p>
+        <h1 id="studentName"></h1>
+        <p > enrollment Date : <span id="enrollmentDate"></span> </p>
+        <p > grade <span id="grade" ></span></p><br>
+        
+
+
+        <div class="mt-6">
+            <a href="/">Go to Home</a><br>
+            <a href="/studentinfo" >Add new student details</a><br><br>
+        </div>
+        <div class="mt-6">
+            <button onclick="updatedetails()">update </button>
+            <button onclick="deletedetail()">Delete </button>
+            
+        </div>
+    </div>
+    <script>
+        async function fetchDetails() {
+            const url = window.location.href;
+            const id = window.location.pathname.split('/').pop();
+            try {
+                const response = await fetch(`/api/student/${id}`);
+                if (!response.ok) {
+                    throw new Error('Failed to fetch appointment details');
+                }
+                const data = await response.json();
+                document.getElementById('studentId').textContent = `ID: ${data.studentId}`;
+                document.getElementById('studentName').textContent = data.studentName;
+                document.getElementById('enrollmentDate').textContent = data.enrollmentDate;
+                document.getElementById('grade').textContent = data.grade;
+            } catch (error) {
+                console.error('Error fetching ', error);
+                document.body.innerHTML = '<p>Failed to load details.</p>';
+            }
+        }
+
+        async function deletedetail() {
+            const id = window.location.pathname.split('/').pop();
+            try {
+                const response = await fetch(`/api/student/${id}`, {
+                    method: 'DELETE',
+                });
+                if (!response.ok) {
+                    throw new Error('Failed to delete details');
+                }
+                alert('student info deleted successfully');
+                window.location.href = '/';
+            } catch (error) {
+                console.error('Error deleting details:', error);
+                alert('Failed to delete details');
+            }
+        }
+
+        function updatedetails(){
+            const id = window.location.pathname.split('/').pop();
+            window.location.href = `/update/${id}`;
+        }
+
+        document.addEventListener('DOMContentLoaded', fetchDetails);
+    </script>
+</body>
+</html>

@@ -1,4 +1,8 @@
 import React from 'react'
+import htmlphoto from './assets/html.png'
+import cssphoto from './assets/css.png'
+import javascriptphoto from './assets/javascript.png'
+import bootstrapphoto from './assets/bootstrap.png'
 
 const Skills = () => {
   return (
@@ -7,19 +11,19 @@ const Skills = () => {
         <h1 className="text-4xl text-center pt-20 pb-8 font-bold">Skills</h1>
         <div className="flex justify-between">
           <div className="">
-            <img src="images/html.png" alt="" className=" "/><br/>
+            <img src={htmlphoto} alt="" className=" "/><br/>
               <label for="" className="text-xl font-semibold">HTML</label>
             </div>
               <div className="skill-1">
-                <img src="images/css.png" alt="" className=" "/><br/>
+                <img src={cssphoto} alt="" className=" "/><br/>
                   <label for="" className="text-xl font-semibold">CSS</label>
                 </div>
                   <div className="skill-1">
-                    <img src="images/javascript.png" alt="" className=" "/><br/>
+                    <img src={javascriptphoto} alt="" className=" "/><br/>
                       <label for="" className="text-xl font-semibold">JavaScript</label>
                     </div>
                       <div className="skill-1">
-                        <img src="images/bootstrap.png" alt="" className=" "/><br/>
+                        <img src={bootstrapphoto} alt="" className=" "/><br/>
                           <label for="" className="text-xl font-semibold">Bootstrap</label>
                         </div>
                       </div>

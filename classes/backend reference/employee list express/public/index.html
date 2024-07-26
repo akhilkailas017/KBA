@@ -1,0 +1,90 @@
+<!-- index.html  -->
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Employee List</title>
+</head>
+
+<body>
+    <div>
+        <h1>Employee List</h1>
+        <label for="nameInput">Enter employee name</label>
+        <input type="text" id="nameInput"><br><br>
+        <label for="roleInput">Enter employee role</label>
+        <input type="text" id="roleInput"><br><br>
+        <button onclick="addEmployee()">Add</button>
+        <ul id="employeeList"></ul>
+    </div>
+    <script>
+        async function addEmployee() {
+            const nameInput = document.getElementById("nameInput");
+            const roleInput = document.getElementById("roleInput");
+            const name = nameInput.value.trim();
+            const role = roleInput.value.trim();
+            if (name && role) {
+                const response = await fetch('/api/employees', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ name, role })
+                });
+                if (response.ok) {
+                    const employee = await response.json();
+                    renderEmployee(employee);
+                    nameInput.value = "";
+                    roleInput.value = "";
+                }
+            }
+        }
+
+        async function getEmployees() {
+            const response = await fetch('/api/employees');
+            const employees = await response.json();
+            employees.forEach(employee => renderEmployee(employee));
+        }
+
+        async function updateEmployee(id) {
+            const newName = prompt("Update the employee name:");
+            const newRole = prompt("Update the employee role:");
+            if (newName && newRole) {
+                const response = await fetch(`/api/employees/${id}`, {
+                    method: 'PUT',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ name: newName, role: newRole })
+                });
+                if (response.ok) {
+                    const employee = await response.json();
+                    document.getElementById(`name-${id}`).textContent = employee.name;
+                    document.getElementById(`role-${id}`).textContent = employee.role;
+                }
+            }
+        }
+
+        async function deleteEmployee(id) {
+            const response = await fetch(`/api/employees/${id}`, { method: 'DELETE' });
+            if (response.ok) {
+                document.getElementById(`item-${id}`).remove();
+            }
+        }
+
+        function renderEmployee(employee) {
+            const employeeList = document.getElementById("employeeList");
+            const li = document.createElement("li");
+            li.id = `item-${employee.id}`;
+            li.innerHTML = `
+                <span id="name-${employee.id}">${employee.name}</span> - 
+                <span id="role-${employee.id}">${employee.role}</span>
+                <button onclick="updateEmployee(${employee.id})">Edit</button>
+                <button onclick="deleteEmployee(${employee.id})">Delete</button>
+            `;
+            employeeList.appendChild(li);
+        }
+
+        document.addEventListener("DOMContentLoaded", getEmployees);
+    </script>
+</body>
+
+</html>
