@@ -4,7 +4,7 @@ const app = express();
 const mongoose = require('mongoose');
 const studentinfo = require('./Models/studentinfo.js');
 const dotenv = require('dotenv');
-// app.use(express.json());
+app.use(express.json());
 dotenv.config();
 
 const uri = process.env.mongodb_uri;
@@ -20,7 +20,7 @@ database.once("connected", () => {
 
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.urlencoded({ extended: true }));
-// app.use(express.json());
+app.use(express.json());
 
 app.get('/', (req, res) => {
     res.sendFile(path.join(__dirname, 'public', 'index.html'));
