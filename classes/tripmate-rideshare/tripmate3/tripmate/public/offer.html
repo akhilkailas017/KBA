@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trip Mate | Offer Ride</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body>
+    <nav>
+        <div class="flex flex-row justify-between items-center w-full h-20 bg-gray-800 text-white px-10">
+            <div class="flex flex-row items-center text-[55px] font-bold">Tripmate</div>
+            <div class="flex flex-row items-center gap-[25px]">
+                <a href="profile.html" class="text-xl font-bold">Profile</a>
+                <a href="dashboard.html" class="text-xl font-bold">Dashboard</a>
+                <a href="#" id="logout" class="text-xl font-bold">Logout</a>
+            </div>
+        </div>
+    </nav>
+
+    <main class="bg-gray-600 py-20 h-screen">
+        <h2 class="text-3xl font-bold text-center mb-10 text-white">Offer Ride</h2>
+        <form id="offer-form" class="max-w-md mx-auto p-10 bg-white rounded shadow-md">
+            <div class="mb-5">
+                <label for="departure" class="text-lg font-bold">Departure Location</label>
+                <input type="text" id="departure" name="departure" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" />
+            </div>
+            <div class="mb-5">
+                <label for="arrival" class="text-lg font-bold">Arrival Location</label>
+                <input type="text" id="arrival" name="arrival" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" />
+            </div>
+            <div class="mb-5">
+                <label for="route" class="text-lg font-bold">Route</label>
+                <input type="text" id="route" name="route" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" />
+            </div>
+            <div class="mb-5">
+                <label for="stops" class="text-lg font-bold">Stops</label>
+                <input type="text" id="stops" name="stops" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" />
+            </div>
+            <div class="mb-5">
+                <label for="date" class="text-lg font-bold">Date of Departure</label>
+                <input type="date" id="date" name="date" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" />
+            </div>
+            <div class="mb-5">
+                <label for="time" class="text-lg font-bold">Time of Departure</label>
+                <input type="time" id="time" name="time" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" />
+            </div>
+            <div class="mb-5">
+                <label for="capacity" class="text-lg font-bold">Passenger Capacity</label>
+                <input type="number" id="capacity" name="capacity" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" />
+            </div>
+            <button type="submit" class="bg-orange-500 hover:bg-orange-700 text-white font-bold py-2 px-4 rounded">Offer Ride</button>
+        </form>
+    </main>
+
+    <script>
+        document.getElementById('offer-form').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const formData = new FormData(e.target);
+            const data = Object.fromEntries(formData.entries());
+            const token = localStorage.getItem('token');
+
+            try {
+                const response = await fetch('/api/offer-ride', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': `Bearer ${token}`
+                    },
+                    body: JSON.stringify(data)
+                });
+
+                const result = await response.json();
+                if (result.success) {
+                    alert('Ride offered successfully!');
+                    window.location.href = 'dashboard.html';
+                } else {
+                    alert('Error: ' + result.message);
+                }
+            } catch (error) {
+                alert('Error: ' + error.message);
+            }
+        });
+
+        document.getElementById('logout').addEventListener('click', () => {
+            localStorage.removeItem('token');
+            window.location.href = 'login.html';
+        });
+    </script>
+</body>
+</html>

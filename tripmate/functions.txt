@@ -1,0 +1,68 @@
+signup
+post:5000/api/auth/register
+{
+  "name": "akhilk",
+  "username": "akhilkailas1",
+  "email": "akhilkailas@gmail.com",
+  "phone": "8590024808",
+  "password": "1234567890"
+}
+
+
+login
+post:5000/api/auth/login
+{
+    "username": "akhilkailas",
+    "password": "1234567890"
+}
+
+offer
+post:4000/api/rides/offer
+{
+    "startLocation": "City b",
+    "endLocation": "City d",
+    "route": "alpy",
+    "stops": ["Stop 2", "Stop 3"],
+    "time": "11:00pm",
+    "vehicleName": "omni",
+    "vehicleNumber": "ABC",
+    "seatsAvailable": 3,
+    "date":"17-07-2024"
+  }
+
+profile
+get:5000/api/auth/profile
+
+update profile
+put:5000/api/auth/profile
+{
+  "name": "new name",
+  "email": "123@gmail.com",
+  "phone": "1234567890",
+  "password": "1234567890"
+}
+
+search rides
+get:3000/api/rides/search?startLocation=City%20b&endLocation=City%20d&date=17-07-2024
+
+book
+post:3000/api/rides/book
+{
+  "rideId": "66a62b42ddd22616618017d7",
+  "seatsRequested": 1
+}
+
+admin signup
+post:4000/api/admin/signup
+{
+  "username": "akhil",
+  "password": "1234567890"
+}
+
+admin_login
+post:4000/api/admin/login
+{
+    "username":"akhil",
+    "password":"1234567890"
+}
+  

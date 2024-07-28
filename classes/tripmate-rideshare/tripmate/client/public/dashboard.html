@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trip Mate | Dashboard</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body>
+    <nav>
+        <div class="flex flex-row justify-between items-center w-full h-20 bg-gray-800 text-white px-10">
+            <div class="text-3xl font-bold">Tripmate</div>
+            <div class="flex flex-row items-center gap-8">
+                <a href="profile.html" class="text-xl font-bold">Profile</a>
+                <a href="offer.html" class="text-xl font-bold">Offer Ride</a>
+                <a href="admin-login.html" class="text-xl font-bold">Admin</a>
+            </div>
+        </div>
+    </nav>
+
+    <main class="flex flex-col justify-center items-center h-screen bg-gray-600 py-10">
+        <div class="bg-white rounded-md shadow-md p-6 w-full max-w-3xl">
+            <h2 class="text-2xl font-bold mb-4">Search Rides</h2>
+            <form id="search-form" class="mb-4">
+                <div class="mb-4">
+                    <label for="departure" class="block text-gray-700 text-sm font-bold mb-2">Departure</label>
+                    <input type="text" id="departure" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" required>
+                </div>
+                <div class="mb-4">
+                    <label for="arrival" class="block text-gray-700 text-sm font-bold mb-2">Arrival</label>
+                    <input type="text" id="arrival" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" required>
+                </div>
+                <div class="mb-4">
+                    <label for="date" class="block text-gray-700 text-sm font-bold mb-2">Date</label>
+                    <input type="date" id="date" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" required>
+                </div>
+                <div class="flex items-center justify-between">
+                    <button type="submit" class="bg-orange-500 hover:bg-orange-700 text-white font-bold py-2 px-4 rounded">Search</button>
+                </div>
+            </form>
+            <div id="ride-list" class="grid grid-cols-1 gap-4">
+                <!-- Ride cards will be populated here -->
+            </div>
+        </div>
+    </main>
+
+    <script src="../src/js/dashboard.js"></script>
+</body>
+</html>

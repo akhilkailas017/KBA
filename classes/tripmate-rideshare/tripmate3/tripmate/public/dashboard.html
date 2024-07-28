@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trip Mate | Dashboard</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body>
+    <nav>
+        <div class="flex flex-row justify-between items-center w-full h-20 bg-gray-800 text-white px-10">
+            <div class="flex flex-row items-center text-[55px] font-bold">Tripmate</div>
+            <div class="flex flex-row items-center gap-[25px]">
+                <a href="profile.html" class="text-xl font-bold">Profile</a>
+                <a href="offer.html" class="text-xl font-bold">Offer Ride</a>
+                <a href="#" id="logout" class="text-xl font-bold">Logout</a>
+            </div>
+        </div>
+    </nav>
+
+    <main class="bg-gray-600 py-20 h-screen">
+        <h2 class="text-3xl font-bold text-center mb-10 text-white">Dashboard</h2>
+        <form id="search-form" class="max-w-md mx-auto bg-white p-5 rounded shadow-md">
+            <div class="mb-4">
+                <label for="departure" class="block text-gray-700 text-sm font-bold mb-2">Departure</label>
+                <input type="text" id="departure" name="departure" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" />
+            </div>
+            <div class="mb-4">
+                <label for="arrival" class="block text-gray-700 text-sm font-bold mb-2">Arrival</label>
+                <input type="text" id="arrival" name="arrival" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" />
+            </div>
+            <div class="mb-4">
+                <label for="date" class="block text-gray-700 text-sm font-bold mb-2">Date</label>
+                <input type="date" id="date" name="date" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" />
+            </div>
+            <button type="submit" class="bg-orange-500 hover:bg-orange-700 text-white font-bold py-2 px-4 rounded">Search Rides</button>
+        </form>
+
+        <div class="mt-10">
+            <table id="rides-table" class="w-full bg-white rounded shadow-md">
+                <thead>
+                    <tr>
+                        <th>Departure</th>
+                        <th>Arrival</th>
+                        <th>Date</th>
+                        <th>Seats</th>
+                        <th>Vehicle Name</th>
+                        <th>Vehicle Number</th>
+                        <th>Driver Name</th>
+                        <th>Phone Number</th>
+                        <th>Book</th>
+                    </tr>
+                </thead>
+                <tbody id="rides-tbody">
+                </tbody>
+            </table>
+        </div>
+    </main>
+
+    <script>
+        const searchForm = document.getElementById('search-form');
+        const ridesTbody = document.getElementById('rides-tbody');
+
+        searchForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const formData = new FormData(searchForm);
+            const data = Object.fromEntries(formData.entries());
+            const token = localStorage.getItem('token');
+
+            try {
+                const response = await fetch('/api/search-rides', {
+                    method: 'GET',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': `Bearer ${token}`
+                    },
+                    params: data
+                });
+
+                const rides = await response.json();
+                ridesTbody.innerHTML = '';
+
+                rides.forEach((ride) => {
+                    const row = document.createElement('tr');
+                    row.innerHTML = `
+                        <td>${ride.departure}</td>
+                        <td>${ride.arrival}</td>
+                        <td>${ride.date}</td>
+                        <td>${ride.seats}</td>
+                        <td>${ride.vehicleName}</td>
+                        <td>${ride.vehicleNumber}</td>
+                        <td>${ride.driverName}</td>
+                        <td>${ride.phoneNumber}</td>
+                        <td><button class="book-btn" data-ride-id="${ride._id}">Book</button></td>
+                    `;
+                    ridesTbody.appendChild(row);
+                });
+            } catch (err) {
+                console.error(err);
+            }
+        });
+
+        ridesTbody.addEventListener('click', async (e) => {
+            if (e.target.classList.contains('book-btn')) {
+                const rideId = e.target.dataset.rideId;
+                const seats = prompt('How many seats do you want to book?');
+                const token = localStorage.getItem('token');
+
+                try {
+                    const response = await fetch('/api/book-ride', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                            'Authorization': `Bearer ${token}`
+                        },
+                        body: JSON.stringify({
+                            rideId,
+                            seats
+                        })
+                    });
+
+                    const data = await response.json();
+                    if (data.success) {
+                        alert('Ride booked successfully!');
+                        // Update the number of available seats
+                        const rideRow = e.target.closest('tr');
+                        const seatsCell = rideRow.querySelector('td:nth-child(4)');
+                        seatsCell.textContent = data.seats;
+                    } else {
+                        alert('Error booking ride!');
+                    }
+                } catch (err) {
+                    console.error(err);
+                }
+            }
+        });
+
+        document.getElementById('logout').addEventListener('click', () => {
+            localStorage.removeItem('token');
+            window.location.href = 'login.html';
+        });
+    </script>
+</body>
+</html>

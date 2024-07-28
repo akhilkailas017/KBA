@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trip Mate | Login</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body>
+    <nav>
+        <div class="flex flex-row justify-between items-center w-full h-20 bg-gray-800 text-white px-10">
+            <div class="flex flex-row items-center text-[55px] font-bold">Tripmate</div>
+            <div class="flex flex-row items-center gap-[25px]">
+                <a href="index.html" class="text-xl font-bold">Home</a>
+                <a href="signup.html" class="text-xl font-bold">Signup</a>
+            </div>
+        </div>
+    </nav>
+
+    <main class="flex flex-col justify-center items-center bg-gray-600 h-screen">
+        <div class="bg-white rounded-md shadow-md p-10 w-1/2">
+            <h2 class="text-3xl font-bold mb-4">Login</h2>
+            <form id="login-form" action="/api/login" method="post">
+                <div class="mb-4">
+                    <label for="username" class="block text-gray-700 text-sm font-bold mb-2">Username</label>
+                    <input type="text" id="username" name="username" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" />
+                </div>
+                <div class="mb-4">
+                    <label for="password" class="block text-gray-700 text-sm font-bold mb-2">Password</label>
+                    <input type="password" id="password" name="password" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" />
+                </div>
+                <button type="submit" class="bg-orange-500 hover:bg-orange-700 text-white font-bold py-2 px-4 rounded">Login</button>
+            </form>
+        </div>
+    </main>
+
+    <script>
+        document.getElementById('login-form').addEventListener('submit', async (e) => {
+            e.preventDefault(); // Prevent default form submission
+        
+            const formData = new FormData(e.target);
+            const data = Object.fromEntries(formData.entries());
+        
+            try {
+                const response = await fetch('/api/login', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(data)
+                });
+        
+                const result = await response.json();
+                if (result.success) {
+                    localStorage.setItem('token', result.token); // Store the JWT token
+                    window.location.href = 'dashboard.html'; // Redirect to dashboard
+                } else {
+                    alert('Error: ' + result.message);
+                }
+            } catch (error) {
+                alert('Error: ' + error.message);
+            }
+        });
+        </script>
+        
+        
+        
+</body>
+</html>

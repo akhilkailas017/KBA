@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trip Mate | Dashboard</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <div class="flex flex-row justify-between items-center w-full h-20 bg-gray-800 text-white px-10">
+            <div class="flex flex-row items-center text-[55px] font-bold">Tripmate</div>
+            <div class="flex flex-row items-center gap-[25px]">
+                <a href="profile.html" class="text-xl font-bold">Profile</a>
+                <a href="#" class="text-xl font-bold">Logout</a>
+            </div>
+        </div>
+    </nav>
+
+    <section class="bg-gray-600 py-20 h-screen">
+        <h2 class="text-3xl font-bold text-center mb-10 text-white">Dashboard</h2>
+        <form id="search-form">
+            <label for="departure">Departure:</label>
+            <input type="text" id="departure" name="departure">
+            <label for="arrival">Arrival:</label>
+            <input type="text" id="arrival" name="arrival">
+            <label for="date">Date:</label>
+            <input type="date" id="date" name="date">
+            <button type="submit">Search Rides</button>
+        </form>
+
+        <table id="rides-table">
+            <thead>
+                <tr>
+                    <th>Departure</th>
+                    <th>Arrival</th>
+                    <th>Date</th>
+                    <th>Seats</th>
+                    <th>Vehicle Name</th>
+                    <th>Vehicle Number</th>
+                    <th>Driver Name</th>
+                    <th>Phone Number</th>
+                    <th>Book</th>
+                </tr>
+            </thead>
+            <tbody id="rides-tbody">
+            </tbody>
+        </table>
+
+        <script>
+            const searchForm = document.getElementById('search-form');
+            const ridesTable = document.getElementById('rides-table');
+            const ridesTbody = document.getElementById('rides-tbody');
+
+            searchForm.addEventListener('submit', async (e) => {
+                e.preventDefault();
+                const departure = document.getElementById('departure').value;
+                const arrival = document.getElementById('arrival').value;
+                const date = document.getElementById('date').value;
+
+                try {
+                    const response = await fetch('/api/search-rides', {
+                        method: 'GET',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        params: {
+                            departure,
+                            arrival,
+                            date
+                        }
+                    });
+
+                    const rides = await response.json();
+                    ridesTbody.innerHTML = '';
+
+                    rides.forEach((ride) => {
+                        const row = document.createElement('tr');
+                        row.innerHTML = `
+                            <td>${ride.departure}</td>
+                            <td>${ride.arrival}</td>
+                            <td>${ride.date}</td>
+                            <td>${ride.seats}</td>
+                            <td>${ride.vehicleName}</td>
+                            <td>${ride.vehicleNumber}</td>
+                            <td>${ride.driverName}</td>
+                            <td>${ride.phoneNumber}</td>
+                            <td><button class="book-btn" data-ride-id="${ride._id}">Book</button></td>
+                        `;
+                        ridesTbody.appendChild(row);
+                    });
+                } catch (err) {
+                    console.error(err);
+                }
+            });
+
+            ridesTbody.addEventListener('click', async (e) => {
+                if (e.target.classList.contains('book-btn')) {
+                    const rideId = e.target.dataset.rideId;
+                    const seats = prompt('How many seats do you want to book?');
+
+                    try {
+                        const response = await fetch('/api/book-ride', {
+                            method: 'POST',
+                            headers: {
+                                'Content-Type': 'application/json'
+                            },
+                            body: JSON.stringify({
+                                rideId,
+                                seats
+                            })
+                        });
+
+                        const data = await response.json();
+                        if (data.success) {
+                            alert('Ride booked successfully!');
+                            // Update the number of available seats
+                            const rideRow = e.target.closest('tr');
+                            const seatsCell = rideRow.querySelector('td:nth-child(4)');
+                            seatsCell.textContent = data.seats;
+                        } else {
+                            alert('Error booking ride!');
+                        }
+                    } catch (err) {
+                        console.error(err);
+                    }
+                }
+            });
+        </script>
+    </section>
+
+</body>
+
+</html>

@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trip Mate | Profile</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <div class="flex flex-row justify-between items-center w-full h-20 bg-gray-800 text-white px-10">
+            <div class="flex flex-row items-center text-[55px] font-bold">Tripmate</div>
+            <div class="flex flex-row items-center gap-[25px]">
+                <a href="dashboard.html" class="text-xl font-bold">Dashboard</a>
+                <a href="#" class="text-xl font-bold">Logout</a>
+            </div>
+        </div>
+    </nav>
+
+    <section class="bg-gray-600 py-20 h-screen">
+        <h2 class="text-3xl font-bold text-center mb-10 text-white">Profile</h2>
+        <div class="max-w-md mx-auto p-10 bg-white rounded shadow-md">
+            <h3 class="text-2xl font-bold mb-5">User Details</h3>
+            <form id="profile-form">
+                <div class="flex flex-col mb-5">
+                    <label for="name">Name:</label>
+                    <input type="text" id="name" name="name" value="{{ user.name }}">
+                </div>
+                <div class="flex flex-col mb-5">
+                    <label for="email">Email:</label>
+                    <input type="email" id="email" name="email" value="{{ user.email }}">
+                </div>
+                <div class="flex flex-col mb-5">
+                    <label for="phone">Phone:</label>
+                    <input type="text" id="phone" name="phone" value="{{ user.phone }}">
+                </div>
+                <button type="submit" class="bg-orange-500 hover:bg-orange-700 text-white font-bold py-2 px-4 rounded">Update Profile</button>
+            </form>
+
+            <h3 class="text-2xl font-bold mb-5 mt-10">Booking History</h3>
+            <table id="bookings-table">
+                <thead>
+                    <tr>
+                        <th>Ride ID</th>
+                        <th>Departure</th>
+                        <th>Arrival</th>
+                        <th>Date</th>
+                        <th>Seats</th>
+                        <th>Vehicle Name</th>
+                        <th>Vehicle Number</th>
+                        <th>Driver Name</th>
+                        <th>Phone Number</th>
+                    </tr>
+                </thead>
+                <tbody id="bookings-tbody">
+                </tbody>
+            </table>
+        </div>
+    </section>
+
+    <script>
+        const profileForm = document.getElementById('profile-form');
+        const bookingsTable = document.getElementById('bookings-table');
+        const bookingsTbody = document.getElementById('bookings-tbody');
+
+        profileForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const phone = document.getElementById('phone').value;
+
+            try {
+                const response = await fetch('/api/update-profile', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        name,
+                        email,
+                        phone
+                    })
+                });
+
+                const data = await response.json();
+                if (data.success) {
+                    alert('Profile updated successfully!');
+                } else {
+                    alert('Error updating profile!');
+                }
+            } catch (err) {
+                console.error(err);
+            }
+        });
+
+        // Get booking history
+    async function getBookingHistory() {
+        try {
+            const response = await fetch('/api/booking-history', {
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            });
+
+            const bookings = await response.json();
+            bookingsTbody.innerHTML = '';
+
+            bookings.forEach((booking) => {
+                const row = document.createElement('tr');
+                row.innerHTML = `
+                    <td>${booking.rideId}</td>
+                    <td>${booking.departure}</td>
+                    <td>${booking.arrival}</td>
+                    <td>${booking.date}</td>
+                    <td>${booking.seats}</td>
+                    <td>${booking.vehicleName}</td>
+                    <td>${booking.vehicleNumber}</td>
+                    <td>${booking.driverName}</td>
+                    <td>${booking.phoneNumber}</td>
+                `;
+                bookingsTbody.appendChild(row);
+            });
+        } catch (err) {
+            console.error(err);
+        }
+    }
+
+    // Call getBookingHistory function on page load
+    document.addEventListener('DOMContentLoaded', getBookingHistory);
+    </script>
+</body>
+</html>
