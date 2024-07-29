@@ -1,4 +1,3 @@
-// models/Admin.js
 
 const mongoose = require('mongoose');
 const bcrypt = require('bcrypt');
@@ -8,7 +7,7 @@ const AdminSchema = new mongoose.Schema({
   password: { type: String, required: true }
 });
 
-// Hash password before saving
+
 AdminSchema.pre('save', async function (next) {
   if (!this.isModified('password')) {
     next();

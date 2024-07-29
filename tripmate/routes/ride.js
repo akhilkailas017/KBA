@@ -1,6 +1,6 @@
 const express = require('express');
 const { offerRide, searchRides, bookRide } = require('../controllers/rideController');
-const authMiddleware = require('../middleware/authMiddleware'); // Middleware for authentication
+const authMiddleware = require('../middleware/authMiddleware'); 
 
 const router = express.Router();
 

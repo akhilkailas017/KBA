@@ -9,13 +9,10 @@ dotenv.config();
 
 const app = express();
 
-// Connect to MongoDB
 connectDB();
 
-// Middleware
 app.use(express.json());
 
-// Routes
 app.use('/api/auth', authRoutes);
 app.use('/api/rides', rideRoutes);
 app.use('/api/admin', adminRoutes);

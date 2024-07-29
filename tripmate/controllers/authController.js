@@ -90,7 +90,7 @@ const updateProfile = async (req, res) => {
       return res.status(404).json({ msg: 'User not found' });
     }
 
-    // Update the fields only if they are provided in the request
+    
     if (name) user.name = name;
     if (email) user.email = email;
     if (phone) user.phone = phone;
