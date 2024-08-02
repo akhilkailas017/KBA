@@ -1,12 +1,9 @@
 const express = require('express');
 const path = require('path');
 const mongoose = require('mongoose');
+const db = require('../../models/schema.js');
 
 const loginroute = express.Router();
-
-loginroute.use(express.json());
-loginroute.use(express.urlencoded({ extended: false }));
-loginroute.use(express.static(path.join(__dirname, '../../public')));
 
 mongoose.connect("mongodb://localhost:27017/Cookbook-Mongo");
 
@@ -18,7 +15,10 @@ database.once("connected", () => {
     console.log("database connected");
 });
 
-const db = require('../../models/schema.js');
+loginroute.use(express.json());
+loginroute.use(express.urlencoded({ extended: false }));
+loginroute.use(express.static(path.join(__dirname, '../../public')));
+
 
 loginroute.get('/signup', (req, res) => {
     res.sendFile(path.join(__dirname, '../../public/static', 'signup.html'));
@@ -29,7 +29,6 @@ loginroute.post('/signup', async (req, res) => {
 
     console.log(username, email, password);
 
-    // Validate input
     if (!username || !email || !password) {
         return res.status(400).send('All fields are required');
     }
@@ -44,7 +43,6 @@ loginroute.post('/signup', async (req, res) => {
 
         const data = await db.create(newUser);
         req.session.username = username;
-        // req.session.favourites = data.favourites;
         console.log(data)
         res.redirect('/home');
     } catch (error) {
@@ -60,7 +58,7 @@ loginroute.get('/login', (req, res) => {
 loginroute.post('/login', async (req, res) => {
     const { username, password } = req.body;
 
-    // Validate input
+
     if (!username || !password) {
         return res.status(400).send('Username and password are required');
     }
@@ -68,7 +66,7 @@ loginroute.post('/login', async (req, res) => {
     try {
         const user = await db.findOne({ username });
         if (!user) {
-            return res.send("Invalid username or password. Please signup first");
+            return res.send("Invalid username or password");
         }
 
         if (user.password === password) {
@@ -76,7 +74,7 @@ loginroute.post('/login', async (req, res) => {
             req.session.favourites = user.favourites;
             return res.redirect('/home');
         } else {
-            return res.send("Invalid username or password. Please signup first");
+            return res.send("Invalid username or password");
         }
     } catch (error) {
         console.error(error);
@@ -97,7 +95,7 @@ loginroute.post('/add/favourites', async (req, res) => {
         user.favourites.push({ title, image, recipeId });
         await user.save();
 
-        req.session.favourites = user.favourites; // Update session with new favourites
+        req.session.favourites = user.favourites;
 
         res.json({ message: 'Recipe added to favourites' });
     } catch (error) {

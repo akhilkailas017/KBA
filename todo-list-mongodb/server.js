@@ -3,7 +3,7 @@ const mongoose = require('mongoose');
 const Todo = require('./models/Todo');
 
 const app = express();
-const port = 3000;
+const port = 3005;
 
 mongoose.connect('mongodb://localhost:27017/todoapp', {
     useNewUrlParser: true,
@@ -51,7 +51,7 @@ app.put('/api/todos/:id', async (req, res) => {
             const updatedTodo = await Todo.findByIdAndUpdate(
                 id,
                 { task: task.trim() },
-                { new: true, runValidators: true } // Ensure validators run during update
+                { new: true, runValidators: true } 
             );
             if (updatedTodo) {
                 res.json(updatedTodo);
