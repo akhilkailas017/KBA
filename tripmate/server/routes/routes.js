@@ -4,6 +4,7 @@ const Ride = require('../models/Ride');
 const User = require('../models/User');
 const bcrypt = require('bcrypt');
 const verifyToken = require('../middleware/authMiddleware');
+const Complaint = require('../models/Complaint');
 const mongoose = require('mongoose');
 
 
@@ -79,7 +80,6 @@ router.post('/bookRide', verifyToken, async (req, res) => {
       return res.status(404).json({ msg: 'Ride not found' });
     }
 
-    // Check if user already has a booking for the same ride
     const existingBooking = ride.bookings.find(
       booking => booking.userId.toString() === req.user.userId
     );
@@ -158,9 +158,8 @@ router.get('/rideHistory', verifyToken, async (req, res) => {
 
 router.get('/profile', verifyToken, async (req, res) => {
   try {
-    console.log('req.user:', req.user);
-    console.log('test:',req.user.userId)
-    const user = await User.findById(req.user.userId).select('-password').select('-_id').select('-__v').select('-username');
+
+    const user = await User.findById(req.user.userId).select('-password').select('-_id').select('-__v').select('-username').select('-messages');
     if (!user) {
       console.log('User not found');
       return res.status(404).json({ msg: 'User not found' });
@@ -177,7 +176,6 @@ router.put('/profile', verifyToken, async (req, res) => {
   const { name, email, phone, password } = req.body;
 
   try {
-    console.log('req.user:', req.user);
     const user = await User.findById(req.user.userId);
     if (!user) {
       console.log('User not found');
@@ -194,6 +192,84 @@ router.put('/profile', verifyToken, async (req, res) => {
 
     await user.save();
     res.json({ msg: 'Profile updated successfully' });
+  } catch (err) {
+    console.error('Server error:', err.message);
+    res.status(500).json({ msg: 'Server error' });
+  }
+});
+
+router.delete("/rides/:id", verifyToken, async (req, res) => {
+  try {
+    const rideId = req.params.id;
+    const userId = req.user.userId;
+
+
+    const ride = await Ride.findById(rideId);
+    if (!ride) {
+      return res.status(404).json({ error: "Ride not found" });
+    }
+
+    if (ride.userId.toString() !== userId) {
+      return res.status(403).json({ error: "Access denied" });
+    }
+
+
+    for (const booking of ride.bookings) {
+      const user = await User.findById(booking.userId);
+      if (user) {
+        user.messages.push(`The ride from ${ride.startLocation} to ${ride.endLocation} on ${ride.date} has been canceled by the offerer.`);
+        await user.save();
+      }
+    }
+
+
+    await Ride.findByIdAndDelete(rideId);
+    res.json({ message: "Ride deleted successfully" });
+  } catch (error) {
+    console.error("Error deleting ride:", error);
+    res.status(500).json({ error: "Server error" });
+  }
+});
+
+
+
+router.get("/my-rides", verifyToken, async (req, res) => {
+  try {
+    const userId = req.user.userId;
+    const rides = await Ride.find({ userId });
+    res.json(rides);
+  } catch (error) {
+    console.error("Error retrieving rides:", error);
+    res.status(500).json({ error: "Server error" });
+  }
+});
+
+
+
+router.post("/complaints", verifyToken, async (req, res) => {
+  const { complaintText } = req.body;
+
+  const userId = req.user.userId;
+  const username = req.user.username
+
+  try {
+    const newComplaint = new Complaint({ userId, username, complaintText });
+    await newComplaint.save();
+    res.status(201).json({ message: "Complaint registered successfully" });
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+});
+
+router.get('/profile2', verifyToken, async (req, res) => {
+  try {
+
+    const user = await User.findById(req.user.userId);
+    if (!user) {
+      console.log('User not found');
+      return res.status(404).json({ msg: 'User not found' });
+    }
+    res.json(user);
   } catch (err) {
     console.error('Server error:', err.message);
     res.status(500).json({ msg: 'Server error' });

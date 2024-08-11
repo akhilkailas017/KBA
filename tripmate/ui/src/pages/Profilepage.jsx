@@ -71,39 +71,43 @@ const Profilepage = () => {
   };
 
   return (
-    <main className="flex flex-col justify-center items-center h-screen bg-gray-600">
-      <div className="bg-white rounded-md shadow-md p-10 w-1/2">
-        <h2 className="text-3xl font-bold mb-4">Profile</h2>
-        <div className="flex flex-col justify-center items-center">
-          <div className="bg-white rounded-md shadow-md p-4 w-full mb-4">
-            <h3 className="text-2xl font-bold mb-2">Personal Details</h3>
-            {Object.keys(profile).map((key) => (
-              <div className="flex flex-row justify-between mb-2" key={key}>
-                <span className="text-gray-700 capitalize">{key}:</span>
-                {isEditing ? (
-                  <input
-                    type="text"
-                    name={key}
-                    value={profile[key]}
-                    onChange={handleChange}
-                    className="text-gray-700 font-bold"
-                  />
-                ) : (
-                  <span className="text-gray-700 font-bold">{profile[key]}</span>
-                )}
-              </div>
-            ))}
-          </div>
-          {isEditing ? (
-            <button className="bg-orange-500 hover:bg-orange-700 text-white font-bold py-2 px-4 rounded" onClick={handleSave}>
-              Save
-            </button>
-          ) : (
-            <button className="bg-orange-500 hover:bg-orange-700 text-white font-bold py-2 px-4 rounded" onClick={() => setIsEditing(true)}>
-              Edit Details
-            </button>
-          )}
+    <main className="flex flex-col justify-center items-center min-h-screen bg-gray-800 p-4">
+      <div className="bg-gray-700 rounded-md shadow-md p-6 w-full max-w-lg">
+        <h2 className="text-5xl font-bold text-white mb-6 text-center">Profile</h2>
+        <div className="bg-gray-800 rounded-md shadow-md p-4 mb-6">
+          <h3 className="text-xl font-bold text-white mb-4">Personal Details</h3>
+          {Object.keys(profile).map((key) => (
+            <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-4" key={key}>
+              <span className="text-gray-300 capitalize md:w-1/3">{key}:</span>
+              {isEditing ? (
+                <input
+                  type="text"
+                  name={key}
+                  value={profile[key]}
+                  onChange={handleChange}
+                  className="text-gray-800 w-full md:w-2/3 p-2 rounded-md bg-gray-200 focus:outline-none focus:ring-2 focus:ring-orange-400"
+                />
+              ) : (
+                <span className="text-gray-300 font-bold md:w-2/3">{profile[key]}</span>
+              )}
+            </div>
+          ))}
         </div>
+        {isEditing ? (
+          <button
+            className="w-full py-3 bg-orange-500 hover:bg-orange-600 text-white font-bold rounded-lg shadow-lg transition ease-in-out duration-150"
+            onClick={handleSave}
+          >
+            Save
+          </button>
+        ) : (
+          <button
+            className="w-full py-3 bg-orange-500 hover:bg-orange-600 text-white font-bold rounded-lg shadow-lg transition ease-in-out duration-150"
+            onClick={() => setIsEditing(true)}
+          >
+            Edit Details
+          </button>
+        )}
       </div>
     </main>
   );

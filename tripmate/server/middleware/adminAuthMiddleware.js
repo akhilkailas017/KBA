@@ -1,5 +1,7 @@
 const jwt = require("jsonwebtoken");
 const bcrypt = require("bcrypt");
+require("dotenv").config();
+const adminsecret=process.env.adminsecret
 
 const adminCredentials = {
   username: "admin",
@@ -12,7 +14,7 @@ function verifyAdminToken(req, res, next) {
     return res.status(401).json({ error: "Access denied" });
   }
   try {
-    const decoded = jwt.verify(token, "admin-secret-key");
+    const decoded = jwt.verify(token, adminsecret);
     req.admin = decoded; 
     next();
   } catch (error) {

@@ -6,6 +6,9 @@ const routes = require("./routes/routes");
 const auth=require('./routes/auth')
 const cookieParser =require('cookie-parser')
 const adminRoutes = require("./routes/adminRoutes");
+require("dotenv").config();
+const PORT = process.env.port;
+const mongourl=process.env.mongourl;
 
 app.use(
   cors({ 
@@ -22,12 +25,12 @@ app.use("/", auth);
 app.use("/admin", adminRoutes);
 
 
-const PORT = 5000;
+
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
 });
 
-mongoose.connect("mongodb://localhost:27017/trip-test");
+mongoose.connect(mongourl);
 
 const database = mongoose.connection;
 
