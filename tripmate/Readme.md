@@ -22,4 +22,9 @@ Tripmate is a modern ride-sharing application designed to connect drivers and pa
 ```
 docker-compose up --build
 ```
+- **Open your web browser and navigate to**
+```
+http://localhost:3000
+```
+**to view the application.**
 
