@@ -18,4 +18,8 @@ Tripmate is a modern ride-sharing application designed to connect drivers and pa
 
 ## Installation and Running
 
+- **Build and start the Docker containers:**
+```
+docker-compose up --build
+```
 
