@@ -4,9 +4,17 @@ Tripmate is a modern ride-sharing application designed to connect drivers and pa
 
 ## Features
 
-- **Offer a Ride:** Users can offer a ride, specifying details such as departure location, arrival location, date, and number of seats available.
+- **User Authentication:** Sign-up and login pages for users authenticated with JWT tokens.
+- **Offer a Ride:** Users can offer a ride, specifying details such as departure location, arrival location, route, stops, vehicle details, and available seats.
 - **Join a Ride:** Users can search for and join available rides based on their travel preferences.
-- **Manage Rides:** View and manage your offered and joined rides through a user-friendly interface.
+- **Ride Display and Booking:** A section displays all rides, and users can book rides listed in the search results for a specific date. After booking, the ride is listed in the ride history.
+- **Ride History:** View and manage your booked rides, including a section for messages related to booked rides and another for booking histories.
+- **Profile Management:** Manage and edit your login details through a user-friendly profile section.
+- **Offered Rides:** View and manage all rides you have offered.
+- **Complaint Registration:** Register complaints related to rides directly through the app.
+- **Admin Panel:** The admin can log in, delete users violating the rules, and view and analyze complaints given by users.
+- **Logout:** A logout button clears cookies stored in the browser and exits the page.
+
 
 ## Tech Stack
 
