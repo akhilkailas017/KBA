@@ -37,7 +37,7 @@ http://localhost:3000
 
 ## Admin Login
 
-- **Username:**admin
-- **Password:**1234567890
+- **Username:** admin
+- **Password:** 1234567890
 
 
