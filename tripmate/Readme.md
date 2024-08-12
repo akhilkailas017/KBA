@@ -50,4 +50,7 @@ http://localhost:3000/admin/login
 - **Username:** admin
 - **Password:** 1234567890
 
-
+## Screen Record Link
+```
+https://drive.google.com/file/d/1XhK-IO0kayp9ZCFKCDm_Ausy4fOQ3jJs/view?usp=sharing
+```
