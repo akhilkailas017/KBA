@@ -4,7 +4,7 @@ Tripmate is a ride-sharing application designed to connect drivers and passenger
 
 ## Features
 
-- **User Authentication:** Sign-up and login pages for users authenticated with JWT tokens.
+- **User Authentication:** Sign-up and login pages for users authenticated with JWT tokens. Passwords for both users and admins are encrypted using bcrypt.
 - **Offer a Ride:** Users can offer a ride, specifying details such as departure location, arrival location, route, stops, vehicle details, and available seats.
 - **Join a Ride:** Users can search for and join available rides based on their travel preferences.
 - **Ride Display and Booking:** A section displays all rides, and users can book rides listed in the search results for a specific date. After booking, the ride is listed in the ride history.
