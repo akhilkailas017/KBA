@@ -35,4 +35,9 @@ http://localhost:3000
 ```
 **to view the application.**
 
+## Admin Login
+
+- **Username:**admin
+- **Password:**1234567890
+
 
